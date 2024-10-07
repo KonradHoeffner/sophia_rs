@@ -1,9 +1,9 @@
 //! A Sophia-friendly implementation of [`rdf_types::Vocabulary`]
 use std::sync::Arc;
 
-use rdf_types::{
+use rdf_types::vocabulary::{
     BlankIdVocabulary, BlankIdVocabularyMut, IriVocabulary, IriVocabularyMut,
-    LanguageTagVocabulary, LanguageTagVocabularyMut, LiteralVocabulary, LiteralVocabularyMut,
+    LiteralVocabulary, LiteralVocabularyMut,
 };
 use sophia_api::{
     term::{BnodeId, Term, TermKind},
@@ -51,9 +51,9 @@ impl BlankIdVocabulary for ArcVoc {
 impl LiteralVocabulary for ArcVoc {
     type Literal = rdf_types::Literal<Self::Type, Self::Value>;
 
-    type Type = rdf_types::literal::Type<ArcIri, ArcTag>;
+    //type LiteralType = rdf_types::LiteralType<ArcIri, ArcTag>;
 
-    type Value = String;
+    //type Value = String;
     // I would rather use Arc<str>, but ToRdf::cloned_quads require that Value=String
 
     fn literal<'l>(
@@ -70,7 +70,7 @@ impl LiteralVocabulary for ArcVoc {
         Some(id.to_owned())
     }
 }
-
+/*
 impl LanguageTagVocabulary for ArcVoc {
     type LanguageTag = ArcTag;
 
@@ -82,7 +82,7 @@ impl LanguageTagVocabulary for ArcVoc {
         Some(ArcTag::new_unchecked(Arc::from(id.as_str())))
     }
 }
-
+*/
 impl IriVocabularyMut for ArcVoc {
     fn insert(&mut self, iri: iref::Iri) -> Self::Iri {
         self.get(iri).unwrap()
@@ -103,13 +103,13 @@ impl LiteralVocabularyMut for ArcVoc {
         self.get_literal(value).unwrap()
     }
 }
-
+/*
 impl LanguageTagVocabularyMut for ArcVoc {
     fn insert_language_tag(&mut self, value: langtag::LanguageTag) -> Self::LanguageTag {
         self.get_language_tag(value).unwrap()
     }
 }
-
+*/
 /// Self-explanatory bnode index for JSON-LD processing.
 ///
 /// We are not using Sophia's BnodeId because it does not allocate the '_:'.

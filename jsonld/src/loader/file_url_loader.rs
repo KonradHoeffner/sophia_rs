@@ -3,7 +3,7 @@ use json_ld::future::{BoxFuture, FutureExt};
 use json_ld::{Loader, RemoteDocument};
 use json_syntax::Parse;
 use locspan::{Location, Meta};
-use rdf_types::IriVocabulary;
+use rdf_types::Vocabulary;
 use std::fmt;
 use std::fs::File;
 use std::io::{BufReader, Read};
@@ -24,7 +24,7 @@ impl Loader<Iri<Arc<str>>, Location<Iri<Arc<str>>>> for FileUrlLoader {
 
     fn load_with<'a>(
         &'a mut self,
-        vocabulary: &'a mut (impl Sync + Send + IriVocabulary<Iri = Iri<Arc<str>>>),
+        vocabulary: &'a mut (impl Sync + Send + Vocabulary<Iri = Iri<Arc<str>>>),
         url: Iri<Arc<str>>,
     ) -> BoxFuture<
         'a,

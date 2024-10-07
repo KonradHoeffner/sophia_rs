@@ -1,4 +1,4 @@
-use rdf_types::{literal::Type, Id, Literal, Quad, Term};
+use rdf_types::{LiteralType, Id, Literal, Quad, Term};
 use sophia_api::{
     quad::Spog,
     term::{Term as SophiaTerm, TermKind},
@@ -51,8 +51,8 @@ impl SophiaTerm for RdfTerm {
     fn datatype(&self) -> Option<sophia_api::term::IriRef<MownStr>> {
         match &self.0 {
             Term::Literal(lit) => match lit.type_() {
-                Type::Any(iri) => iri.iri(),
-                Type::LangString(_) => sophia_api::ns::rdf::langString.iri(),
+                LiteralType::Any(iri) => iri.iri(),
+                LiteralType::LangString(_) => sophia_api::ns::rdf::langString.iri(),
             },
             _ => None,
         }
@@ -61,8 +61,8 @@ impl SophiaTerm for RdfTerm {
     fn language_tag(&self) -> Option<sophia_api::term::LanguageTag<MownStr>> {
         match &self.0 {
             Term::Literal(lit) => match lit.type_() {
-                Type::LangString(tag) => Some(tag.as_ref().map_unchecked(MownStr::from_ref)),
-                Type::Any(_) => None,
+                LiteralType::LangString(tag) => Some(tag.as_ref().map_unchecked(MownStr::from_ref)),
+                LiteralType::Any(_) => None,
             },
             _ => None,
         }
@@ -96,6 +96,6 @@ pub fn convert_quad(q: RdfQuad) -> Spog<RdfTerm> {
 
 type RdfS = Id<ArcIri, ArcBnode>;
 type RdfP = Id<ArcIri, ArcBnode>;
-type RdfLit = Literal<Type<ArcIri, ArcTag>, String>;
+type RdfLit = Literal<LiteralType<ArcIri, ArcTag>, String>;
 type RdfO = Term<RdfS, RdfLit>;
 type RdfQuad = Quad<RdfS, RdfP, RdfO, RdfS>;

@@ -55,7 +55,7 @@ where
 
     fn load_with<'a>(
         &'a mut self,
-        _vocabulary: &'a mut (impl Sync + Send + rdf_types::IriVocabularyMut<Iri = I>),
+        _vocabulary: &'a mut (impl Sync + Send + rdf_types::VocabularyMut<Iri = I>),
         url: I,
     ) -> BoxFuture<'a, json_ld::LoadingResult<I, Location<I, S>, Self::Output, Self::Error>>
     where

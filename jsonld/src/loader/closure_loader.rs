@@ -3,7 +3,7 @@ use json_ld::future::{BoxFuture, FutureExt};
 use json_ld::{Loader, RemoteDocument};
 use json_syntax::Parse;
 use locspan::{Location, Meta};
-use rdf_types::IriVocabulary;
+use rdf_types::vocabulary::Vocabulary;
 use std::fmt;
 
 /// Closure loader.
@@ -22,7 +22,7 @@ where
 
     fn load_with<'a>(
         &'a mut self,
-        vocabulary: &'a mut (impl Sync + Send + IriVocabulary<Iri = Iri<Arc<str>>>),
+        vocabulary: &'a mut (impl Sync + Send + Vocabulary<Iri = Iri<Arc<str>>>),
         url: Iri<Arc<str>>,
     ) -> BoxFuture<
         'a,
