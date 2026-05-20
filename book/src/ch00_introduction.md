@@ -4,7 +4,7 @@ The [sophia crate](https://crates.io/crates/sophia) aims at providing a comprehe
 
 [RDF] is a data model designed to exchange knowledge on the Web in an interoperable way. Each piece of knowledge in RDF (a [statement]) is represented by a [triple], made of three [terms]. A set of triples forms an RDF [graph]. Finally, several graphs can be grouped in a collection called a [dataset], where each graph is identified by a unique name.
 
-In Sophia, each of these core concepts is modeled by a trait, which can be implemented in multiple ways (see for example the [`Graph`] trait and [some of the types implementing it](https://docs.rs/sophia_api/latest/sophia_api/graph/trait.Graph.html#foreign-impls)). Sophia is therefore not meant to provide the "ultimate" implementation of RDF in Rust, but a generic framework to help various implementations to interoperate with each other (in the spirit of [Apache Commons RDF] for Java or [RDFJS] for Javascript/Typescript).
+In Sophia, each of these core concepts is modeled by a trait, which can be implemented in multiple ways (see for example the [`Graph`] trait and [some of the types implementing it](https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#foreign-impls)). Sophia is therefore not meant to provide the "ultimate" implementation of RDF in Rust, but a generic framework to help various implementations to interoperate with each other (in the spirit of [Apache Commons RDF] for Java or [RDFJS] for Javascript/Typescript).
 
 ## Generalized vs. Strict RDF model {#generialized}
 The data model supported by this Sophia is in fact
@@ -26,7 +26,7 @@ The generalized RDF model extends RDF as follows:
 [graph]: https://www.w3.org/TR/rdf12-concepts/#dfn-rdf-graph
 [dataset]: https://www.w3.org/TR/rdf12-concepts/#dfn-rdf-dataset
 
-[`Graph`]: https://docs.rs/sophia_api/latest/sophia_api/graph/trait.Graph.html
+[`Graph`]: https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html
 [Apache Commons RDF]: https://github.com/apache/commons-rdf/
 [RDF/JS]: https://rdf.js.org/
 

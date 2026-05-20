@@ -14,7 +14,7 @@ pub trait Graph {
 }
 ```
 
-Given a type `MyGraph` implementing that trait, the actual type of triples yielded by [`MyGraph::triples`](https://docs.rs/sophia/0.7.2/sophia/graph/trait.Graph.html#tymethod.triples) could not be immediately determined, and was [quite intricate](https://docs.rs/sophia/latest/sophia/graph/type.GTriple.html). This could be inconvenient for some users of `MyGraph`, and was usually cumbersome for the implementer.
+Given a type `MyGraph` implementing that trait, the actual type of triples yielded by [`MyGraph::triples`](https://docs.rs/sophia/0.7.2/sophia/graph/trait.Graph.html#tymethod.triples) could not be immediately determined, and was quite intricate. This could be inconvenient for some users of `MyGraph`, and was usually cumbersome for the implementer.
 
 Compare to the new definition of the `Graph` trait:
 ```rust,noplayground,ignore
@@ -32,7 +32,7 @@ where GATs have now also replaced it.
 
 ## The new `Term` trait
 
-The old [`TTerm`](https://docs.rs/sophia/latest/sophia/term/trait.TTerm.html)
+The old [`TTerm`](https://docs.rs/sophia/0.7.2/sophia/term/trait.TTerm.html)
 trait has been replaced by a new [`Term`](https://github.com/pchampin/sophia_rs/blob/a925e6177cfdd7e90dafd4b917ae0790c40a0165/api/src/term.rs#L87)
 trait, with a significantly different API, that serves several purposes:
 
@@ -47,19 +47,19 @@ See the chapter on [RDF terms](ch02_rdf_terms.md) for more detail.
 
 Historically, a number of different types have been created in Sophia for representing IRIs,
 which was [causing some confusion](https://github.com/pchampin/sophia_rs/discussions/112).
-Most of them have now disappeared, in favor of the types defined in [`sophia_iri`](https://docs.rs/sophia_iri/latest/sophia_iri/).
+Most of them have now disappeared, in favor of the types defined in [`sophia_iri`](https://docs.rs/sophia_iri/0.8.0/sophia_iri/).
 
-### Reducing the [`sophia_term`](https://docs.rs/sophia_term/latest/sophia_term/) crate
+### Reducing the [`sophia_term`](https://docs.rs/sophia_term/0.8.0/sophia_term/) crate
 
-The [`sophia_term`](https://docs.rs/sophia_term/latest/sophia_term/) crate,
+The [`sophia_term`](https://docs.rs/sophia_term/0.8.0/sophia_term/) crate,
 from which most term implementations came in 0.7, has been significantly reduced.
 The most general types that it provided ([`BoxTerm`](https://docs.rs/sophia_term/0.7.2/sophia_term/type.BoxTerm.html), [`RefTerm`](https://docs.rs/sophia_term/0.7.2/sophia_term/type.RefTerm.html))
-are now subsumed by [`SimpleTerm`](https://docs.rs/sophia_api/0.9.0/sophia_api/term/enum.SimpleTerm.html),
+are now subsumed by [`SimpleTerm`](https://docs.rs/sophia_api/0.8.0/sophia_api/term/enum.SimpleTerm.html),
 a straightforward implementation of the `Term` trait, provided by
-[`sophia_api`](https://docs.rs/sophia_api/0.9.0/sophia_api/index.html).
+[`sophia_api`](https://docs.rs/sophia_api/0.8.0/sophia_api/index.html).
 More specific types (such as
-[`RcTerm`](https://docs.rs/sophia_term/0.9.0/sophia_term/type.RcTerm.html) or 
-[`ArcTerm`](https://docs.rs/sophia_term/0.9.0/sophia_term/type.ArcTerm.html))
+[`RcTerm`](https://docs.rs/sophia_term/0.8.0/sophia_term/type.RcTerm.html) or 
+[`ArcTerm`](https://docs.rs/sophia_term/0.8.0/sophia_term/type.ArcTerm.html))
 are still provided by `sophia_term`.
 
 ## Simplification of the `Graph` and `Dataset` traits
@@ -69,7 +69,7 @@ such as [`triples_with_s`](https://docs.rs/sophia_api/0.7.2/sophia_api/graph/tra
 or [`triples_with_po`](https://docs.rs/sophia_api/0.7.2/sophia_api/graph/trait.Graph.html#method.triples_with_po)
 (and similarly for `Dataset`: `quads_with_s`, etc.).
 
-All these methods have disappeared in favor of [`triples_matching`](https://docs.rs/sophia_api/0.9.0/sophia_api/graph/trait.Graph.html#method.triples_matching),
+All these methods have disappeared in favor of [`triples_matching`](https://docs.rs/sophia_api/0.8.0/sophia_api/graph/trait.Graph.html#method.triples_matching),
 so that instead of:
 ```rust,noplayground,ignore
 for t in g.triples_with_s(mys) {

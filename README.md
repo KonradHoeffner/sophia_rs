@@ -44,11 +44,8 @@ a high-level [user documentation](https://pchampin.github.io/sophia_rs/) is avai
 
 This project is licensed under either or
 
-* Apache License, Version 2.0
-  ([LICENSE-APACHE](LICENSE-APACHE) or http://www.apache.org/licenses/LICENSE-2.0)
-* CECILL-B License
-  ([LICENSE-CECILL-B](LICENSE-CECILL-B) or https://cecill.info/licences/Licence_CeCILL-B_V1-en.html,
-   compatible with BSD)
+* [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+* [CECILL-B License](https://cecill.info/licences/Licence_CeCILL-B_V1-en.html), compatible with BSD 
 
 at your option.
 
@@ -104,6 +101,6 @@ An outdated comparison of Sophia with other RDF libraries is still available
 [RDF test-suite]: https://github.com/w3c/rdf-tests/
 [JSON-LD test-suite]: https://github.com/w3c/json-ld-api/
 [RDF canonicalization]: https://www.w3.org/TR/rdf-canon/
-[SPARQL 1.2 query language]: https://www.w3.org/TR/sparql12-query
-[SPARQL 1.1 protocol]: https://www.w3.org/TR/sparql11-protocol
+[SPARQL 1.2 query language]: https://www.w3.org/TR/sparql12-query/
+[SPARQL 1.1 protocol]: https://www.w3.org/TR/sparql11-protocol/
 [isomorphic]: https://www.w3.org/TR/rdf12-concepts/#dfn-graph-isomorphism

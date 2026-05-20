@@ -22,5 +22,5 @@ TODO Section Other uses of [`TermMatcher`]s
 Provide a few examples of other methods using term matchers.
 -->
 
-[`Graph::triples_matching`]: https://docs.rs/sophia_api/0.9.0/sophia_api/graph/trait.Graph.html#method.triples_matching
-[`TermMatcher`]: https://docs.rs/sophia_api/latest/sophia_api/term/matcher/trait.TermMatcher.html
+[`Graph::triples_matching`]: https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#method.triples_matching
+[`TermMatcher`]: https://docs.rs/sophia_api/0.10.0/sophia_api/term/matcher/trait.TermMatcher.html
