@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Executive summary - Sophia</title>
+        <title>RDF Graphs - Sophia</title>
 
 
         <!-- Custom HTML head -->
@@ -177,105 +177,153 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <!-- this file is only meant to "import" the README.md into the book -->
-<h1 id="sophia"><a class="header" href="#sophia">Sophia</a></h1>
-<p>A Rust toolkit for RDF and Linked Data.</p>
-<p><a href="https://github.com/pchampin/sophia_rs/actions"><img src="https://github.com/pchampin/sophia_rs/actions/workflows/lint_and_test.yml/badge.svg" alt="Actions Status"></a>
-<a href="https://crates.io/crates/sophia"><img src="https://img.shields.io/crates/v/sophia.svg" alt="Latest Version"></a>
-<a href="https://docs.rs/sophia/"><img src="https://docs.rs/sophia/badge.svg" alt="Documentation"></a></p>
-<p>It comprises the following crates:</p>
-<ul>
-<li>Core crates:
-<ul>
-<li><a href="https://crates.io/crates/sophia_api"><code>sophia_api</code></a> defines a generic API for RDF 1.2 and linked data,
-as a set of core traits and types;
-more precisely, it provides traits for describing
-<ul>
-<li>terms, triples and quads,</li>
-<li>graphs and datasets,</li>
-<li>parsers and serializers</li>
-</ul>
-</li>
-<li><a href="https://crates.io/crates/sophia_bcp47"><code>sophia_bcp47</code></a> provides functions and types for validating <a href="https://tools.ietf.org/search/bcp47">BCP47</a> language tags.</li>
-<li><a href="https://crates.io/crates/sophia_iri"><code>sophia_iri</code></a> provides functions, types and traits for validating and resolving IRIs.</li>
-<li><a href="https://crates.io/crates/sophia_inmem"><code>sophia_term</code></a> defines various implementations of the <code>Term</code> trait from <code>sophia_api</code>.</li>
-<li><a href="https://crates.io/crates/sophia_inmem"><code>sophia_inmem</code></a> defines in-memory implementations of the <code>Graph</code> and <code>Dataset</code> traits from <code>sophia_api</code>.</li>
-</ul>
-</li>
-<li>Parsers and serializers
-<ul>
-<li><a href="https://crates.io/crates/sophia_turtle"><code>sophia_turtle</code></a> provides parsers and serializers for the Turtle-family of concrete syntaxes (for RDF 1.2).</li>
-<li><a href="https://crates.io/crates/sophia_jsonld"><code>sophia_jsonld</code></a> provides parsers and serializers for JSON-LD 1.1.</li>
-<li><a href="https://crates.io/crates/sophia_xml"><code>sophia_xml</code></a> provides parsers and serializers for RDF/XML 1.2.</li>
-</ul>
-</li>
-<li>Other
-<ul>
-<li><a href="https://crates.io/crates/sophia_c14n"><code>sophia_c14n</code></a> implements <a href="https://www.w3.org/TR/rdf-canon/">RDF canonicalization</a>.</li>
-<li><a href="https://crates.io/crates/sophia_isomorphism"><code>sophia_isomorphism</code></a> provides functions to determine if two graphs or datasets are <a href="https://www.w3.org/TR/rdf12-concepts/#dfn-graph-isomorphism">isomorphic</a>.</li>
-<li><a href="https://crates.io/crates/sophia_sparql"><code>sophia_sparql</code></a> provides a (currently partial) implementation of the <a href="https://www.w3.org/TR/sparql12-query/">SPARQL 1.2 Query Language</a>.</li>
-<li><a href="https://crates.io/crates/sophia_sparql_client"><code>sophia_sparql_client</code></a> provides a client for the <a href="https://www.w3.org/TR/sparql11-protocol/">SPARQL 1.1 Protocol</a>.</li>
-<li>[<code>sophia_reasoner</code>] provides reasoning over Simple, RDF and RDF-Schema entailment regimes</li>
-<li><a href="https://crates.io/crates/sophia_resource"><code>sophia_resource</code></a> provides a resource-centric API.</li>
-</ul>
-</li>
-<li>All-inclusive
-<ul>
-<li><a href="https://crates.io/crates/sophia"><code>sophia</code></a> re-exports symbols from all the crates above, with the following provisio:
-<ul>
-<li><code>sophia_jsonld</code> is only available with the <code>jsonld</code> feature</li>
-<li><code>sophia_sparql</code> is only available with the <code>sparql</code> feature</li>
-<li><code>sophia_sparql_client</code> is only available with the <code>http_client</code> feature</li>
-<li><code>sophia_xml</code> is only available with the <code>xml</code> feature</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>In addition to the <a href="https://docs.rs/sophia/">API documentation</a>,
-a high-level <a href="https://pchampin.github.io/sophia_rs/">user documentation</a> is available (although not quite complete yet).</p>
-<h2 id="licence"><a class="header" href="#licence">Licence</a></h2>
-<p>This project is licensed under either or</p>
-<ul>
-<li><a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></li>
-<li><a href="https://cecill.info/licences/Licence_CeCILL-B_V1-en.html">CECILL-B License</a>, compatible with BSD</li>
-</ul>
-<p>at your option.</p>
-<h2 id="citation"><a class="header" href="#citation">Citation</a></h2>
-<p>When using Sophia, please use the following citation:</p>
-<blockquote>
-<p>Champin, P.-A. (2020) ‘Sophia: A Linked Data and Semantic Web toolkit for Rust’, in Wilde, E. and Amundsen, M. (eds). The Web Conference 2020: Developers Track, Taipei, TW. Available at: https://www2020devtrack.github.io/site/schedule.</p>
-</blockquote>
-<p>Bibtex:</p>
-<pre><code class="language-bibtex">@misc{champin_sophia_2020,
-        title = {{Sophia: A Linked Data and Semantic Web toolkit for Rust},
-        author = {Champin, Pierre-Antoine},
-        howpublished = {{The Web Conference 2020: Developers Track}},
-        address = {Taipei, TW},
-        editor = {Wilde, Erik and Amundsen, Mike},
-        month = apr,
-        year = {2020},
-        language = {en},
-        url = {https://www2020devtrack.github.io/site/schedule}
+                        <h1 id="rdf-graphs"><a class="header" href="#rdf-graphs">RDF Graphs</a></h1>
+<p>The <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html"><code>Graph</code></a> and <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.MutableGraph.html"><code>MutableGraph</code></a> traits define how you interact with <a href="https://www.w3.org/TR/rdf12-concepts/#dfn-rdf-graph">RDF graphs</a> in Sophia.</p>
+<h2 id="using-graphs"><a class="header" href="#using-graphs">Using graphs</a></h2>
+<p>RDF graphs are sets of triples,
+so the most common thing you need to do with a graph is to iterate over its triples.
+This is achieved with the <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#tymethod.triples"><code>Graph::triples</code></a> method:</p>
+<pre><code class="language-rust noplayground"><span class="boring">use sophia::api::prelude::*;
+</span><span class="boring">use sophia::inmem::graph::LightGraph;
+</span><span class="boring">fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+</span><span class="boring">let g = LightGraph::new();
+</span>for result in g.triples() {
+	let triple = result?;
+	// do something with t;
 }
-</code></pre>
-<h2 id="third-party-crates"><a class="header" href="#third-party-crates">Third-party crates</a></h2>
-<p>The following third-party crates are using or extending Sophia</p>
+<span class="boring">Ok(()) }</span></code></pre>
+<p>Notice that <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#tymethod.triples"><code>Graph::triples</code></a> yields <a href="https://doc.rust-lang.org/std/result/enum.Result.html"><code>Result</code></a>s,
+as some implementations of <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html"><code>Graph</code></a> may fail at any point of the iteration.</p>
+<p>When only a subset of the triples in the graph are of interest,
+you will want to use the <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#method.triples_matching"><code>Graph::triples_matching</code></a> method:</p>
+<pre><code class="language-rust noplayground"><span class="boring">use sophia::api::{ns::rdf, prelude::*, term::SimpleTerm};
+</span><span class="boring">use sophia::inmem::graph::LightGraph;
+</span>
+<span class="boring">let graph = LightGraph::new();
+</span>// Utility closure to recognize IRIs in the schema.org namespace
+let in_schema_org = |t: SimpleTerm| -&gt; bool {
+	t.iri()
+	 .map(|iri| iri.as_str().starts_with(("http://schema.org/")))
+	 .unwrap_or(false)
+};
+// Iter over all instances of schema.org types
+graph
+	.triples_matching(Any, [rdf::type_], in_schema_org)
+	.map(|res| { let [s, _, o] = res.unwrap().to_spo(); (s, o)})
+	.for_each(|(instance, typ)| {
+		// do something 
+	})</code></pre>
+<p><a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#method.triples_matching"><code>Graph::triples_matching</code></a> accepts a large variety of parameters,
+which will be described in more detail <a href="./ch05_term_matchers.html">in the next chapter</a>.</p>
+<p><a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html"><code>Graph</code></a> also provide methods to iterate over all <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#method.subjects">subjects</a>,
+<a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#method.predicates">predicate</a>
+and <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#method.objects">object</a>
+in the graph,
+as well as over all unique terms of a certain kind
+(<a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#method.iris"><code>Graph::iris</code></a>, <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#method.blank_nodes"><code>Graph::blank_nodes</code></a>, <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#method.literals"><code>Graph::literals</code></a>, etc.).</p>
+<p>Finally, it is possible to check whether a graph contains a specific triple with the method <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#method.contains"><code>Graph::contains</code></a>.</p>
+<h2 id="mutating-graphs"><a class="header" href="#mutating-graphs">Mutating graphs</a></h2>
+<p>Any implementation of <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html"><code>Graph</code></a> that can be mutated should also implement <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.MutableGraph.html"><code>MutableGraph</code></a>,
+which comes with additional methods for modifying the graph.
+Individual triples can be added to the graph (resp. removed from the graph)
+with <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.MutableGraph.html#tymethod.insert"><code>MutableGraph::insert</code></a> (resp. <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.MutableGraph.html#tymethod.remove"><code>MutableGraph::remove</code></a>).
+Inserting (resp. removing) a triple that is already (resp. not) present in the graph will be essentially a noop.</p>
+<pre><code class="language-rust noplayground"><span class="boring">use sophia::{api::{ns::rdf, prelude::*}, iri::*};
+</span>/// Example: increment the rdf:value of a given subject
+<span class="boring">fn f&lt;G: MutableGraph&gt;(mut g: G) -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+</span><span class="boring">let s = Iri::new_unchecked("https://example.org/foo");
+</span>let old_value: i32 = g.triples_matching([s], [rdf::value], Any)
+	.next()
+	.unwrap()?
+	.o()
+	.try_into_term()?;
+g.remove(s, rdf::value, old_value)?;
+g.insert(s, rdf::value, old_value + 1)?;
+<span class="boring">Ok(()) }</span></code></pre>
+<p>Batch modifications can also be performed on mutable graphs:</p>
 <ul>
-<li><a href="https://crates.io/crates/hdt"><code>hdt</code></a> provides an implementation of Sophia’s traits based on the <a href="https://www.rdfhdt.org/">HDT</a> format.</li>
-<li><a href="https://crates.io/crates/manas"><code>manas</code></a> is a modular framework for implementing <a href="https://solidproject.org/">Solid</a> compatible servers</li>
-<li><a href="https://crates.io/crates/nanopub"><code>nanopub</code></a> is a toolkit for managing <a href="https://nanopub.net/">nanopublications</a></li>
+<li><a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.MutableGraph.html#method.insert_all"><code>MutableGraph::insert_all</code></a>
+inserts all the triples from a triple source<sup class="footnote-reference" id="fr-triple_source-1"><a href="#footnote-triple_source">1</a></sup>;</li>
+<li><a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.MutableGraph.html#method.remove_all"><code>MutableGraph::remove_all</code></a>
+removes all the triples from a triple source<sup class="footnote-reference" id="fr-triple_source-2"><a href="#footnote-triple_source">1</a></sup>;</li>
+<li><a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.MutableGraph.html#method.remove_matching"><code>MutableGraph::remove_matching</code></a>
+removes all the triples matching the parameters;</li>
+<li><a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.MutableGraph.html#method.retain_matching"><code>MutableGraph::retain_matching</code></a>
+removes all the triples <em>except</em> those matching the parameters.</li>
 </ul>
-<h2 id="history"><a class="header" href="#history">History</a></h2>
-<p>An outdated comparison of Sophia with other RDF libraries is still available
-<a href="https://github.com/pchampin/sophia_benchmark/blob/master/benchmark_results.ipynb">here</a>.</p>
+<p>The parameters of <code>remove_matching</code> and <code>retain_matching</code> are similar to those of <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#method.triples_matching"><code>Graph::triples_matching</code></a>
+and are described in more detail in the <a href="./ch05_term_matchers.html">next chapter</a>.</p>
+<h2 id="useful-types-implementing-graph"><a class="header" href="#useful-types-implementing-graph">Useful types implementing <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html"><code>Graph</code></a></a></h2>
+<ul>
+<li>slices of <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/triple/trait.Triple.html">triples</a> implement <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html"><code>Graph</code></a>;</li>
+<li>standard collections (<a href="https://doc.rust-lang.org/std/vec/struct.Vec.html"><code>Vec</code></a>, <a href="https://doc.rust-lang.org/std/collections/struct.HashSet.html"><code>HashSet</code></a> and <a href="https://doc.rust-lang.org/std/collections/struct.BTreeSet.html"><code>BTreeSet</code></a>) of <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/triple/trait.Triple.html">triples</a> implement <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html"><code>Graph</code></a> and <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.MutableGraph.html"><code>MutableGraph</code></a>;</li>
+<li><a href="https://docs.rs/sophia_inmem/0.10.0/sophia_inmem/graph/type.LightGraph.html"><code>sophia::inmem::LightGraph</code></a> provides a <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html"><code>Graph</code></a> and <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.MutableGraph.html"><code>MutableGraph</code></a> implementation with a low memory footprint;</li>
+<li><a href="https://docs.rs/sophia_inmem/0.10.0/sophia_inmem/graph/type.FastGraph.html"><code>sophia::inmem::FastGraph</code></a> provides a <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html"><code>Graph</code></a> and <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.MutableGraph.html"><code>MutableGraph</code></a> implementation designed for fast retrieval of any given triple.</li>
+</ul>
+<h2 id="recipes-for-constructing-graphs"><a class="header" href="#recipes-for-constructing-graphs">Recipes for constructing graphs</a></h2>
+<h3 id="constructing-and-populating-an-empty-graph"><a class="header" href="#constructing-and-populating-an-empty-graph">Constructing and populating an empty graph</a></h3>
+<pre><code class="language-rust noplayground"><span class="boring">use sophia::{api::{ns::{Namespace, rdf}, prelude::*}, inmem::graph::FastGraph};
+</span><span class="boring">fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+</span>let mut g = FastGraph::new();
+let ex = Namespace::new_unchecked("https://example.org/ns#");
+let alice = ex.get_unchecked("alice");
+let s = Namespace::new_unchecked("http://schema.org/");
+g.insert(
+	&amp;alice,
+	rdf::type_,
+	s.get_unchecked("Person")
+)?;
+g.insert(
+	&amp;alice,
+	s.get_unchecked("name"),
+  "Alice"
+)?;
+<span class="boring">Ok(()) }</span></code></pre>
+<h3 id="constructing-a-graph-from-a-triple-source1"><a class="header" href="#constructing-a-graph-from-a-triple-source1">Constructing a graph from a triple source<sup class="footnote-reference" id="fr-triple_source-3"><a href="#footnote-triple_source">1</a></sup></a></h3>
+<pre><code class="language-rust noplayground"><span class="boring">use sophia::{api::prelude::*, inmem::graph::FastGraph, iri::Iri};
+</span><span class="boring">fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+</span><span class="boring">let big_graph = FastGraph::new();
+</span>// Extract all triples about 'alice' from big_graph in a new graph
+let alice = Iri::new_unchecked("https://example.org/ns#alice");
+let graph: FastGraph = big_graph
+	.triples_matching([alice], Any, Any)
+	.collect_triples()?;
+<span class="boring">Ok(()) }</span></code></pre>
+<p>NB: Only types implementing <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.CollectibleGraph.html"><code>CollectibleGraph</code></a>
+can actually be constructed with the <code>collected_triples</code> method as above.
+However, most types implementing <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html"><code>Graph</code></a> should implement <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.CollectibleGraph.html"><code>CollectibleGraph</code></a>.</p>
+<h3 id="constructing-a-graph-from-a-file"><a class="header" href="#constructing-a-graph-from-a-file">Constructing a graph from a file</a></h3>
+<pre><code class="language-rust noplayground"><span class="boring">use sophia::{api::prelude::*, inmem::graph::FastGraph, iri::Iri};
+</span><span class="boring">use std::{io::BufReader, fs::File};
+</span>use sophia::turtle::parser::turtle;
+
+<span class="boring">fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+</span>dbg!(std::env::current_dir());
+let f = BufReader::new(File::open("../sophia_doap.ttl")?);
+let graph: FastGraph = turtle::parse_bufread(f)
+	.collect_triples()?;
+<span class="boring">Ok(()) }</span></code></pre>
+<p>For more about parsing (and serializing), see <a href="./ch07_parsing_and_serializing.html">the corresponding chapter</a>.</p>
+<hr>
+<hr>
+<ol class="footnote-definition">
+<li id="footnote-triple_source">
+<p>a <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/source/trait.TripleSource.html"><code>TripleSource</code></a> is a fallible stream of triples,
+such as those returned by <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#tymethod.triples"><code>Graph::triples</code></a> or <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#method.triples_matching"><code>Graph::triples_matching</code></a>,
+or those returned by <a href="./ch07_parsing_and_serializing.html">parsers</a>.
+In particular, any iterator of <code>Result&lt;T, E&gt;</code> where <code>T: </code><a href="https://docs.rs/sophia_api/0.10.0/sophia_api/triple/trait.Triple.html"><code>Triple</code></a> is a <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/source/trait.TripleSource.html"><code>TripleSource</code></a>. <a href="#fr-triple_source-1">↩</a> <a href="#fr-triple_source-2">↩2</a> <a href="#fr-triple_source-3">↩3</a></p>
+</li>
+</ol>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="ch03_rdf_statements.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
 
-                            <a rel="next prefetch" href="ch00_introduction.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="ch05_term_matchers.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -285,8 +333,11 @@ a high-level <a href="https://pchampin.github.io/sophia_rs/">user documentation<
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="ch03_rdf_statements.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
 
-                    <a rel="next prefetch" href="ch00_introduction.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="ch05_term_matchers.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>

@@ -1,44 +1,64 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Sophia</title>
-        <meta name="robots" content="noindex" />
+        <meta name="robots" content="noindex">
+
+
         <!-- Custom HTML head -->
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-98f6951b.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-f138353f.js"></script>
     </head>
     <body>
-        <!-- Provide site root to javascript -->
-        <script type="text/javascript">
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
-        </script>
-
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script type="text/javascript">
+        <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -51,57 +71,70 @@
         </script>
 
         <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
-            var theme;
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
-            html.classList.remove('no-js')
+            const html = document.documentElement;
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            html.classList.add("js");
         </script>
 
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
-            var html = document.querySelector('html');
-            var sidebar = 'hidden';
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
         </script>
 
-        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Readme</a></li><li class="chapter-item expanded "><a href="00_introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="01_getting_started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li></ol>
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
-        <div id="page-wrapper" class="page-wrapper">
+        <div id="mdbook-page-wrapper" class="page-wrapper">
 
             <div class="page">
-                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                            <i class="fa fa-bars"></i>
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
                         </button>
-                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                            <i class="fa fa-paint-brush"></i>
-                        </button>
-                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-                            <i class="fa fa-search"></i>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
                         </button>
                     </div>
 
@@ -109,44 +142,53 @@
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
-                            <i id="print-button" class="fa fa-print"></i>
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
                         <a href="https://github.com/pchampin/sophia_rs" title="Git repository" aria-label="Git repository">
-                            <i id="git-repository-button" class="fa fa-github"></i>
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
                         </a>
+
                     </div>
                 </div>
 
-                <div id="search-wrapper" class="hidden">
-                    <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
                     </form>
-                    <div id="searchresults-outer" class="searchresults-outer hidden">
-                        <div id="searchresults-header" class="searchresults-header"></div>
-                        <ul id="searchresults">
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
                         </ul>
                     </div>
                 </div>
+
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script type="text/javascript">
-                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
-                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
-                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
                 </script>
 
-                <div id="content" class="content">
+                <div id="mdbook-content" class="content">
                     <main>
                         <!-- this file is only meant to "import" the README.md into the book -->
 <h1 id="sophia"><a class="header" href="#sophia">Sophia</a></h1>
 <p>A Rust toolkit for RDF and Linked Data.</p>
-<p><a href="https://github.com/pchampin/sophia_rs/actions"><img src="https://github.com/pchampin/sophia_rs/actions/workflows/lint_and_test.yml/badge.svg" alt="Actions Status" /></a>
-<a href="https://crates.io/crates/sophia"><img src="https://img.shields.io/crates/v/sophia.svg" alt="Latest Version" /></a>
-<a href="https://docs.rs/sophia/"><img src="https://docs.rs/sophia/badge.svg" alt="Documentation" /></a></p>
+<p><a href="https://github.com/pchampin/sophia_rs/actions"><img src="https://github.com/pchampin/sophia_rs/actions/workflows/lint_and_test.yml/badge.svg" alt="Actions Status"></a>
+<a href="https://crates.io/crates/sophia"><img src="https://img.shields.io/crates/v/sophia.svg" alt="Latest Version"></a>
+<a href="https://docs.rs/sophia/"><img src="https://docs.rs/sophia/badge.svg" alt="Documentation"></a></p>
 <p>It comprises the following crates:</p>
 <ul>
-<li><a href="https://crates.io/crates/sophia_api"><code>sophia_api</code></a> defines a generic API for RDF and linked data,
+<li>Core crates:
+<ul>
+<li><a href="https://crates.io/crates/sophia_api"><code>sophia_api</code></a> defines a generic API for RDF 1.2 and linked data,
 as a set of core traits and types;
 more precisely, it provides traits for describing
 <ul>
@@ -155,28 +197,51 @@ more precisely, it provides traits for describing
 <li>parsers and serializers</li>
 </ul>
 </li>
+<li><a href="https://crates.io/crates/sophia_bcp47"><code>sophia_bcp47</code></a> provides functions and types for validating <a href="https://tools.ietf.org/search/bcp47">BCP47</a> language tags.</li>
 <li><a href="https://crates.io/crates/sophia_iri"><code>sophia_iri</code></a> provides functions, types and traits for validating and resolving IRIs.</li>
-<li><a href="https://crates.io/crates/sophia_term"><code>sophia_term</code></a> defines implementations of the <code>TTerm</code> trait from <code>sophia_api</code>.</li>
+<li><a href="https://crates.io/crates/sophia_inmem"><code>sophia_term</code></a> defines various implementations of the <code>Term</code> trait from <code>sophia_api</code>.</li>
 <li><a href="https://crates.io/crates/sophia_inmem"><code>sophia_inmem</code></a> defines in-memory implementations of the <code>Graph</code> and <code>Dataset</code> traits from <code>sophia_api</code>.</li>
-<li><a href="https://crates.io/crates/sophia_turtle"><code>sophia_turtle</code></a> provides parsers and serializers for the Turtle-family of concrete syntaxes.</li>
-<li><a href="https://crates.io/crates/sophia_xml"><code>sophia_xml</code></a> provides parsers and serializers for RDF/XML.</li>
-<li><a href="https://crates.io/crates/sophia_jsonld"><code>sophia_jsonld</code></a> provides preliminary support for JSON-LD.</li>
-<li><a href="https://crates.io/crates/sophia_indexed"><code>sophia_indexed</code></a> and <a href="https://crates.io/crates/sophia_rio"><code>sophia_rio</code></a> are lower-level crates, used by the ones above. </li>
 </ul>
-<p>and finally:</p>
+</li>
+<li>Parsers and serializers
 <ul>
-<li><a href="https://crates.io/crates/sophia"><code>sophia</code></a> is the “all-inclusive” crate,
-re-exporting symbols from all the crates above.</li>
+<li><a href="https://crates.io/crates/sophia_turtle"><code>sophia_turtle</code></a> provides parsers and serializers for the Turtle-family of concrete syntaxes (for RDF 1.2).</li>
+<li><a href="https://crates.io/crates/sophia_jsonld"><code>sophia_jsonld</code></a> provides parsers and serializers for JSON-LD 1.1.</li>
+<li><a href="https://crates.io/crates/sophia_xml"><code>sophia_xml</code></a> provides parsers and serializers for RDF/XML 1.2.</li>
 </ul>
+</li>
+<li>Other
+<ul>
+<li><a href="https://crates.io/crates/sophia_c14n"><code>sophia_c14n</code></a> implements <a href="https://www.w3.org/TR/rdf-canon/">RDF canonicalization</a>.</li>
+<li><a href="https://crates.io/crates/sophia_isomorphism"><code>sophia_isomorphism</code></a> provides functions to determine if two graphs or datasets are <a href="https://www.w3.org/TR/rdf12-concepts/#dfn-graph-isomorphism">isomorphic</a>.</li>
+<li><a href="https://crates.io/crates/sophia_sparql"><code>sophia_sparql</code></a> provides a (currently partial) implementation of the <a href="https://www.w3.org/TR/sparql12-query/">SPARQL 1.2 Query Language</a>.</li>
+<li><a href="https://crates.io/crates/sophia_sparql_client"><code>sophia_sparql_client</code></a> provides a client for the <a href="https://www.w3.org/TR/sparql11-protocol/">SPARQL 1.1 Protocol</a>.</li>
+<li>[<code>sophia_reasoner</code>] provides reasoning over Simple, RDF and RDF-Schema entailment regimes</li>
+<li><a href="https://crates.io/crates/sophia_resource"><code>sophia_resource</code></a> provides a resource-centric API.</li>
+</ul>
+</li>
+<li>All-inclusive
+<ul>
+<li><a href="https://crates.io/crates/sophia"><code>sophia</code></a> re-exports symbols from all the crates above, with the following provisio:
+<ul>
+<li><code>sophia_jsonld</code> is only available with the <code>jsonld</code> feature</li>
+<li><code>sophia_sparql</code> is only available with the <code>sparql</code> feature</li>
+<li><code>sophia_sparql_client</code> is only available with the <code>http_client</code> feature</li>
+<li><code>sophia_xml</code> is only available with the <code>xml</code> feature</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>In addition to the <a href="https://docs.rs/sophia/">API documentation</a>,
+a high-level <a href="https://pchampin.github.io/sophia_rs/">user documentation</a> is available (although not quite complete yet).</p>
 <h2 id="licence"><a class="header" href="#licence">Licence</a></h2>
-<p><a href="https://cecill.info/licences/Licence_CeCILL-B_V1-en.html">CECILL-B</a> (compatible with BSD)</p>
-<h2 id="testing"><a class="header" href="#testing">Testing</a></h2>
-<p>The test suite depends on the [the <a href="https://github.com/w3c/json-ld-api/">JSON-LD test-suite</a>
-which is included as a <code>git</code> submodule.
-In order to run all the tests, you need to execute the following commands:</p>
-<pre><code class="language-bash">$ git submodule init
-$ git submodule update
-</code></pre>
+<p>This project is licensed under either or</p>
+<ul>
+<li><a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></li>
+<li><a href="https://cecill.info/licences/Licence_CeCILL-B_V1-en.html">CECILL-B License</a>, compatible with BSD</li>
+</ul>
+<p>at your option.</p>
 <h2 id="citation"><a class="header" href="#citation">Citation</a></h2>
 <p>When using Sophia, please use the following citation:</p>
 <blockquote>
@@ -195,87 +260,665 @@ $ git submodule update
         url = {https://www2020devtrack.github.io/site/schedule}
 }
 </code></pre>
+<h2 id="third-party-crates"><a class="header" href="#third-party-crates">Third-party crates</a></h2>
+<p>The following third-party crates are using or extending Sophia</p>
+<ul>
+<li><a href="https://crates.io/crates/hdt"><code>hdt</code></a> provides an implementation of Sophia’s traits based on the <a href="https://www.rdfhdt.org/">HDT</a> format.</li>
+<li><a href="https://crates.io/crates/manas"><code>manas</code></a> is a modular framework for implementing <a href="https://solidproject.org/">Solid</a> compatible servers</li>
+<li><a href="https://crates.io/crates/nanopub"><code>nanopub</code></a> is a toolkit for managing <a href="https://nanopub.net/">nanopublications</a></li>
+</ul>
 <h2 id="history"><a class="header" href="#history">History</a></h2>
 <p>An outdated comparison of Sophia with other RDF libraries is still available
 <a href="https://github.com/pchampin/sophia_benchmark/blob/master/benchmark_results.ipynb">here</a>.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
-<p>The <a href="https://crates.io/crates/sophia">sophia crate</a> aims to provide a comprehensive toolkit for working with RDF and Linked Data in Rust.</p>
-<p>RDF is a data model designed to exchange knowledge on the Web in an interoperable way. Each piece of knowledge in RDF (a statement) is represented by a triple, made of three terms. A set of triples forms an RDF graph. Finally, several graphs can be grouped in a collection called a dataset, where each graph is identified by a unique name.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started"><a class="header" href="#getting-started">Getting Started</a></h1>
-<p>Following a short example how to build a graph, mutate it and serialize it back.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<p>The <a href="https://crates.io/crates/sophia">sophia crate</a> aims at providing a comprehensive toolkit for working with RDF and Linked Data in Rust.</p>
+<p><a href="https://www.w3.org/TR/rdf12-concepts/">RDF</a> is a data model designed to exchange knowledge on the Web in an interoperable way. Each piece of knowledge in RDF (a <a href="https://www.w3.org/TR/rdf12-concepts/#dfn-rdf-statement">statement</a>) is represented by a <a href="https://www.w3.org/TR/rdf12-concepts/#dfn-rdf-triple">triple</a>, made of three <a href="https://www.w3.org/TR/rdf12-concepts/#dfn-rdf-term">terms</a>. A set of triples forms an RDF <a href="https://www.w3.org/TR/rdf12-concepts/#dfn-rdf-graph">graph</a>. Finally, several graphs can be grouped in a collection called a <a href="https://www.w3.org/TR/rdf12-concepts/#dfn-rdf-dataset">dataset</a>, where each graph is identified by a unique name.</p>
+<p>In Sophia, each of these core concepts is modeled by a trait, which can be implemented in multiple ways (see for example the <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html"><code>Graph</code></a> trait and <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#foreign-impls">some of the types implementing it</a>). Sophia is therefore not meant to provide the “ultimate” implementation of RDF in Rust, but a generic framework to help various implementations to interoperate with each other (in the spirit of <a href="https://github.com/apache/commons-rdf/">Apache Commons RDF</a> for Java or [RDFJS] for Javascript/Typescript).</p>
+<h2 id="generialized"><a class="header" href="#generialized">Generalized vs. Strict RDF model</a></h2>
+<p>The data model supported by this Sophia is in fact
+a superset of the RDF data model as defined by the W3C.
+When the distinction matters,
+they will be called, respectively,
+the <em>generalized</em> RDF model, and the <em>strict</em> RDF model.
+The generalized RDF model extends RDF as follows:</p>
+<ul>
+<li>In addition to standard RDF terms (IRIs, blank nodes, literals, and triple terms),
+Sophia supports variables (a concept borrowed from [SPARQL] or [Notation3])</li>
+<li>Sophia allows any kind of term in any position (subject, predicate, object, graph name).</li>
+<li>Sophia allow IRIs to be relative IRI references
+(while in strict RDF, <a href="https://www.w3.org/TR/rdf12-concepts/#section-IRIs">IRIs must be absolute</a>).</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="getting-started"><a class="header" href="#getting-started">Getting Started</a></h1>
+<p>Below is a short example demonstrating how to build a graph, mutate it and serialize it back.</p>
 <p>Add the sophia crate to your dependencies in <code>Cargo.toml</code></p>
 <pre><code class="language-bash">[dependencies]
-sophia = &quot;0.7.2&quot;
+sophia = "0.9"
 </code></pre>
-<p>Add these lines of code and run the programm.</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">extern crate sophia;
-</span>use sophia::graph::{inmem::FastGraph, *};
-use sophia::ns::Namespace;
-use sophia::parser::turtle;
-use sophia::serializer::nt::NtSerializer;
-use sophia::serializer::*;
-use sophia::triple::stream::TripleSource;
+<p>Add these lines of code and run the program.</p>
+<pre><code class="language-rust noplayground">use sophia::api::prelude::*;
+use sophia::api::ns::Namespace;
+use sophia::inmem::graph::LightGraph;
+use sophia::turtle::parser::turtle;
+use sophia::turtle::serializer::nt::NtSerializer;
 
-fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    let example = r#&quot;
-            @prefix : &lt;http://example.org/&gt;.
-            @prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt;.
+// loading a graph
+let example = r#"
+    @prefix : &lt;http://example.org/&gt;.
+    @prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt;.
+    :alice foaf:name "Alice";
+           foaf:mbox &lt;mailto:alice@work.example&gt; .
+    :bob foaf:name "Bob".
+"#;
+let mut graph: LightGraph = turtle::parse_str(example).collect_triples()?;
 
-            :alice foaf:name &quot;Alice&quot;;
-                foaf:mbox &lt;mailto:alice@work.example&gt; .
+// mutating the graph
+let ex = Namespace::new("http://example.org/")?;
+let foaf = Namespace::new("http://xmlns.com/foaf/0.1/")?;
+graph.insert(
+    ex.get("bob")?,
+    foaf.get("knows")?,
+    ex.get("alice")?,
+)?;
 
-            :bob foaf:name &quot;Bob&quot;.
-            &quot;#;
-    let mut graph: FastGraph = turtle::parse_str(example).collect_triples()?;
-
-    let ex = Namespace::new(&quot;http://example.org/&quot;)?;
-    let foaf = Namespace::new(&quot;http://xmlns.com/foaf/0.1/&quot;)?;
-    graph.insert(&amp;ex.get(&quot;bob&quot;)?, &amp;foaf.get(&quot;knows&quot;)?, &amp;ex.get(&quot;alice&quot;)?)?;
-
-    let mut nt_stringifier = NtSerializer::new_stringifier();
-    let example2 = nt_stringifier.serialize_graph(&amp;mut graph)?.as_str();
-    println!(&quot;The resulting graph\n{}&quot;, example2);
-
-    Ok(())
-}
-</code></pre></pre>
-<p>You should the following graph:</p>
-<pre><code class="language-text">The resulting graph
-&lt;http://example.org/alice&gt; &lt;http://xmlns.com/foaf/0.1/name&gt; &quot;Alice&quot;.
-&lt;http://example.org/bob&gt; &lt;http://xmlns.com/foaf/0.1/name&gt; &quot;Bob&quot;.
-&lt;http://example.org/bob&gt; &lt;http://xmlns.com/foaf/0.1/knows&gt; &lt;http://example.org/alice&gt;.
+// serializing the graph
+let mut nt_stringifier = NtSerializer::new_stringifier();
+let example2 = nt_stringifier.serialize_graph(&amp;graph)?.as_str();
+println!("The resulting graph:\n{}", example2);
+<span class="boring">Ok::&lt;(), Box&lt;dyn std::error::Error&gt;&gt;(())</span></code></pre>
+<p>You should get the following output:</p>
+<pre><code class="language-text">The resulting graph:
+&lt;http://example.org/alice&gt; &lt;http://xmlns.com/foaf/0.1/name&gt; "Alice".
 &lt;http://example.org/alice&gt; &lt;http://xmlns.com/foaf/0.1/mbox&gt; &lt;mailto:alice@work.example&gt;.
+&lt;http://example.org/bob&gt; &lt;http://xmlns.com/foaf/0.1/name&gt; "Bob".
+&lt;http://example.org/bob&gt; &lt;http://xmlns.com/foaf/0.1/knows&gt; &lt;http://example.org/alice&gt;.
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="rdf-terms"><a class="header" href="#rdf-terms">RDF Terms</a></h1>
+<p>The <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html"><code>Term</code></a> trait defines how you interact with <a href="https://www.w3.org/TR/rdf12-concepts/#dfn-rdf-term">RDF terms</a> in Sophia.</p>
+<h2 id="using-terms"><a class="header" href="#using-terms">Using terms</a></h2>
+<p>The first thing you usually need to know about a term is its <em>kind</em> (IRI, Literal…).
+The kind is described by the <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/enum.TermKind.html"><code>TermKind</code></a> enum,
+and available from the <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html#tymethod.kind"><code>Term::kind</code></a> method.</p>
+<pre><code class="language-rust noplayground"><span class="boring">use sophia::api::term::{SimpleTerm, Term, TermKind};
+</span><span class="boring">use TermKind::*;
+</span><span class="boring">let some_term: SimpleTerm = "foo".into_term();
+</span>match some_term.kind() {
+    Iri =&gt; { /* ... */ }
+    Literal =&gt; { /* ... */ }
+    BlankNode =&gt; { /* ... */ }
+    _ =&gt; { /* ... */ }
+}</code></pre>
+<p>Alternatively, when only one kind is of interest, you can use <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html#method.is_iri"><code>Term::is_iri</code></a>, <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html#method.is_literal"><code>Term::is_literal</code></a>, <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html#method.is_blank_node"><code>Term::is_blank_node</code></a>, etc.</p>
+<p>If you are interested in the “value” of the term, the trait provides the following methods. All of them return an <code>Option</code>, which will be <code>None</code> if the term does not have the corresponding kind.</p>
+<ul>
+<li>
+<p>If the term is an IRI, <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html#method.iri"><code>Term::iri</code></a> returns that IRI<sup class="footnote-reference" id="fr-relative_iris-1"><a href="#footnote-relative_iris">1</a></sup>.</p>
+</li>
+<li>
+<p>If the term is a blank node, <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html#method.bnode_id"><code>Term::bnode_id</code></a> returns its <a href="https://www.w3.org/TR/rdf12-concepts/#dfn-blank-node-identifier">blank node identifier</a>.</p>
+</li>
+<li>
+<p>If the term is a literal:</p>
+<ul>
+<li><a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html#method.lexical_form"><code>Term::lexical_form</code></a> returns its <a href="https://www.w3.org/TR/rdf12-concepts/#dfn-lexical-form">lexical form</a> (the “textual value” of the literal),</li>
+<li><a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html#method.datatype"><code>Term::datatype</code></a> returns its datatype IRI<sup class="footnote-reference" id="fr-relative_iris-2"><a href="#footnote-relative_iris">1</a></sup>,</li>
+<li><a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html#method.language_tag"><code>Term::language_tag</code></a> returns its <a href="https://www.w3.org/TR/rdf12-concepts/#dfn-language-tag">language tag</a>, if any.</li>
+</ul>
+</li>
+<li>
+<p>If the term is a <a href="https://www.w3.org/TR/rdf12-concepts/#section-triple-terms">triple term</a>:</p>
+<ul>
+<li><a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html#method.triple"><code>Term::triple</code></a> returns its 3 components in an array of terms,</li>
+<li><a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html#method.constituents"><code>Term::constituents</code></a> iterates over all its constituents
+(i.e. the term itself, plus, for <a href="https://www.w3.org/TR/rdf12-concepts/#section-triple-terms">triple term</a>s, the terms that constitute it, directly or indorectly)</li>
+<li><a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html#method.atoms"><code>Term::atoms</code></a> iterates over all its <a href="https://www.w3.org/TR/rdf12-concepts/#dfn-basic-rdf-term">basic</a> (i.e. non triple) constituents.</li>
+<li>(those three methods also have a <code>to_X</code> version that destructs the original term instead of borrowing it)</li>
+</ul>
+</li>
+<li>
+<p>If the term is a variable<sup class="footnote-reference" id="fr-variables-1"><a href="#footnote-variables">2</a></sup>, <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html#method.variable"><code>Term::variable</code></a> returns its name.</p>
+</li>
+</ul>
+<p>Finally, the method <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html#method.eq"><code>Term::eq</code></a> can be used to check whether two values implementing <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html"><code>Term</code></a> represent the same RDF term. Note that the <code>==</code> operator may give a different result than <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html#method.eq"><code>Term::eq</code></a> on some types implementing the <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html"><code>Term</code></a> trait.</p>
+<h2 id="useful-types-implementing-term"><a class="header" href="#useful-types-implementing-term">Useful types implementing <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html"><code>Term</code></a></a></h2>
+<p>Below is a list of useful types implementing the <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html"><code>Term</code></a> trait:</p>
+<ul>
+<li><a href="https://docs.rs/sophia_iri/0.10.0/sophia_iri/struct.Iri.html"><code>Iri</code></a><code>&lt;T&gt;</code> and <a href="https://docs.rs/sophia_iri/0.10.0/sophia_iri/struct.IriRef.html"><code>IriRef</code></a><code>&lt;T&gt;</code>, where <code>T: Borrow&lt;str&gt;</code>, representing IRIs</li>
+<li><a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/bnode_id/struct.BnodeId.html"><code>BnodeId</code></a><code>&lt;T&gt;</code>, where <code>T: Borrow&lt;str&gt;</code>, representing blank nodes</li>
+<li><code>str</code>, representing literals of type <code>xsd:string</code>,</li>
+<li><code>i32</code>, <code>isize</code> and <code>usize</code> representing literals of type <code>xsd:integer</code>,</li>
+<li><code>f64</code> representing literals of type <code>xsd:double</code>,</li>
+<li><a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/enum.SimpleTerm.html"><code>SimpleTerm</code></a>(see below).</li>
+</ul>
+<p><a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/enum.SimpleTerm.html"><code>SimpleTerm</code></a> is a straightforward implementation of <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html"><code>Term</code></a>, that can represent any kind of term, and can either own its own underlying data or borrow it from something else.</p>
+<p>Any term can be converted to a <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/enum.SimpleTerm.html"><code>SimpleTerm</code></a> using the <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html#method.as_simple"><code>Term::as_simple</code></a> method.
+This method borrows as much as possible from the initial term to avoid spurious memory allocation.
+Alternatively, to convert any term to a self-sufficient <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/enum.SimpleTerm.html"><code>SimpleTerm</code></a>, you can use <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html#method.into_term"><code>Term::into_term</code></a></p>
+<p>See also the list of <a href="#recipes-for-constructing-terms">recipes</a> below.</p>
+<h2 id="borrowing-terms-with-termborrow_term"><a class="header" href="#borrowing-terms-with-termborrow_term">Borrowing terms with <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html#tymethod.borrow_term"><code>Term::borrow_term</code></a></a></h2>
+<p>In Sophia, all functions accepting terms as parameters are expecting a type <code>T: Term</code> – not <code>&amp;T</code>, but the type <code>T</code> itself. So what happens when you want to call such a function with a term <code>t</code>, but still want to retain ownership of <code>t</code>?</p>
+<p>The solution is to pass <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html#tymethod.borrow_term"><code>t.borrow_term()</code></a> to the function. This method returns <em>something</em> implementing <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html"><code>Term</code></a>, representing the same RDF term as <code>t</code>, without waiving ownership. This is a very common pattern in Sophia.</p>
+<p>More precisely, the type returned by <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html#tymethod.borrow_term"><code>t.borrow_term()</code></a> is the associated type <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html#associatedtype.BorrowTerm"><code>Term::BorrowTerm</code></a>. In most cases, this is a reference or a copy of <code>t</code>.</p>
+<h2 id="recipes-for-constructing-terms"><a class="header" href="#recipes-for-constructing-terms">Recipes for constructing terms</a></h2>
+<h3 id="constructing-iris"><a class="header" href="#constructing-iris">Constructing IRIs</a></h3>
+<pre><code class="language-rust noplayground"><span class="boring">fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+</span><span class="boring">
+</span><span class="boring">use sophia::{iri::IriRef, api::ns::Namespace};
+</span><span class="boring">let some_text = "http://example.org";
+</span>// construct an IRI from a constant
+let iri1 = IriRef::new_unchecked("http://example.org");
+
+// construct an IRI from an untrusted string
+let iri2 = IriRef::new(some_text)?;
+
+// construct multiple IRIs from a namespace
+let ns = Namespace::new_unchecked("http://example.org/ns#");
+let iri3 = ns.get_unchecked("foo");
+let iri4 = ns.get(some_text)?;
+
+// standard namespaces
+use sophia::api::ns::{rdf, xsd};
+let iri5 = rdf::Property ;
+let iri6 = xsd::string ;
+<span class="boring">
+</span><span class="boring">Ok(()) }</span></code></pre>
+<h3 id="constructing-literals"><a class="header" href="#constructing-literals">Constructing literals</a></h3>
+<pre><code class="language-rust noplayground"><span class="boring">fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+</span><span class="boring">
+</span><span class="boring">use sophia::api::{ns::xsd, term::{BaseDirection, LanguageTag, SimpleTerm, Term}};
+</span>// use native types for xsd::string, xsd::integer, xsd::double
+let lit_string = "hello world";
+let lit_integer = 42;
+let lit_double = 1.23;
+
+// construct a language-tagged string
+let fr = LanguageTag::new_unchecked("fr");
+let lit_fr = "Bonjour le monde" * fr;
+
+// construct a directional language-tagged string
+let he = LanguageTag::new_unchecked("he");
+let lit_he = "ספרים בינלאומיים" * he * BaseDirection::Rtl;
+
+// construct a literal with an arbitrary datatype
+let lit_date = "2023-11-15" * xsd::date;
+<span class="boring">
+</span><span class="boring">Ok(()) }</span></code></pre>
+<h3 id="constructing-blank-nodes"><a class="header" href="#constructing-blank-nodes">Constructing blank nodes</a></h3>
+<pre><code class="language-rust noplayground"><span class="boring">fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+</span><span class="boring">
+</span><span class="boring">use sophia::api::term::BnodeId;
+</span>let b = BnodeId::new_unchecked("x");
+<span class="boring">
+</span><span class="boring">Ok(()) }</span></code></pre>
+<h3 id="converting-terms-into-a-different-type"><a class="header" href="#converting-terms-into-a-different-type">Converting terms into a different type</a></h3>
+<pre><code class="language-rust noplayground"><span class="boring">use sophia::api::{ns::xsd, term::{SimpleTerm, Term}};
+</span><span class="boring">fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+</span><span class="boring">let some_term = "42" * xsd::integer;
+</span>let t1: SimpleTerm = "hello".into_term();
+let t2: i32 = some_term.try_into_term()?;
+<span class="boring">Ok(()) }</span></code></pre>
+<hr>
+<hr>
+<ol class="footnote-definition">
+<li id="footnote-relative_iris">
+<p>Note that in Sophia’s <a href="#generalized">generalized RDF</a> model,
+IRIs can be <em>relative</em> IRI reference. <a href="#fr-relative_iris-1">↩</a> <a href="#fr-relative_iris-2">↩2</a></p>
+</li>
+<li id="footnote-variables">
+<p>Note that this kind only exist in Sophia’s <a href="#generalized">generalized RDF</a> model. <a href="#fr-variables-1">↩</a></p>
+</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="rdf-statements"><a class="header" href="#rdf-statements">RDF Statements</a></h1>
+<p>The <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/triple/trait.Triple.html"><code>Triple</code></a> and <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/quad/trait.Quad.html"><code>Quad</code></a> traits define how you interact with <a href="https://www.w3.org/TR/rdf12-concepts/#dfn-rdf-statement">RDF statements</a> in Sophia.</p>
+<p>Note that in Sophia’s <a href="#generalized">generalized RDF</a> model, terms of any kind can occur in any position in a statement.
+This contrasts to strict RDF where only IRIs can occur in predicate position,
+and where literals can only occur in the object position.</p>
+<h2 id="using-triples"><a class="header" href="#using-triples">Using triples</a></h2>
+<p>Triples in RDF are made of a subject, a predicate and an object.
+They can be obtained respectively via the methods <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/triple/trait.Triple.html#tymethod.s"><code>Triple::s</code></a>, <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/triple/trait.Triple.html#tymethod.p"><code>Triple::p</code></a> and <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/triple/trait.Triple.html#tymethod.o"><code>Triple::o</code></a>,
+or all at once (as an array of three terms) via the method <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/triple/trait.Triple.html#method.spo"><code>Triple::spo</code></a>.
+These methods also have a <code>to_X</code> version that destructs the original triple instead of borrowing it.</p>
+<pre><code class="language-rust noplayground"><span class="boring">use sophia::api::{ns::rdf, prelude::*};
+</span>// Example: yield all the terms being used as types in the given triples
+fn all_types&lt;IT, T&gt;(triples: IT) -&gt; impl Iterator&lt;Item=T::Term&gt;
+where
+  IT: IntoIterator&lt;Item=T&gt;,
+  T: Triple,
+{
+  triples
+    .into_iter()
+    .filter(|t| rdf::type_ == t.p())
+    .map(|t| t.to_o())
+}</code></pre>
+<h2 id="using-quads"><a class="header" href="#using-quads">Using quads</a></h2>
+<p>Quads are used to represent triples in the context of an optional <a href="https://www.w3.org/TR/rdf12-concepts/#dfn-named-graph">named graph</a>.
+Like triples, they have methods <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/quad/trait.Quad.html#tymethod.s"><code>Quad::s</code></a>, <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/quad/trait.Quad.html#tymethod.p"><code>Quad::p</code></a> and <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/quad/trait.Quad.html#tymethod.o"><code>Quad::o</code></a>,
+but also <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/quad/trait.Quad.html#tymethod.g"><code>Quad::g</code></a> to access the optional graph name,
+and <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/quad/trait.Quad.html#method.spog"><code>Quad::spog</code></a> to obtain all four components all at once.
+These methods also have a <code>to_X</code> version that destructs the original quad instead of borrowing it.</p>
+<pre><code class="language-rust noplayground"><span class="boring">use sophia::api::{ns::rdf, prelude::*};
+</span>// Example: yield all the triples in the default graph, from a list of quads
+fn all_types&lt;IQ, Q&gt;(quads: IQ) -&gt; impl Iterator&lt;Item=[Q::Term; 3]&gt;
+where
+  IQ: IntoIterator&lt;Item=Q&gt;,
+  Q: Quad,
+{
+  quads
+    .into_iter()
+    .filter(|q| q.g().is_none())
+    .map(|q| { let (spo, _g) = q.to_spog(); spo })
+}</code></pre>
+<h2 id="comparing-triples-or-quads"><a class="header" href="#comparing-triples-or-quads">Comparing triples or quads</a></h2>
+<p>To check whether two values implementing <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/triple/trait.Triple.html"><code>Triple</code></a> (resp. <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/quad/trait.Quad.html"><code>Quad</code></a>)
+represent the same RDF statements, the method <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/triple/trait.Triple.html#method.eq"><code>Triple::eq</code></a> (resp. <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/quad/trait.Quad.html#method.eq"><code>Quad::eq</code></a>)
+must be used.
+It will compare each component of the statements using the <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html#method.eq"><code>Term::eq</code></a> method.
+Note that the <code>==</code> operator may give a different result than <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/triple/trait.Triple.html#method.eq"><code>Triple::eq</code></a> or <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/quad/trait.Quad.html#method.eq"><code>Quad::eq</code></a>
+on some types implementing the <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/triple/trait.Triple.html"><code>Triple</code></a> or the <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/quad/trait.Quad.html"><code>Quad</code></a> trait.</p>
+<h2 id="useful-types-implementing-triple"><a class="header" href="#useful-types-implementing-triple">Useful types implementing <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/triple/trait.Triple.html"><code>Triple</code></a></a></h2>
+<p>While the <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/triple/trait.Triple.html"><code>Triple</code></a> and <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/quad/trait.Quad.html"><code>Quad</code></a> traits can be implemented by multiple types,
+in most situations the following types will be used:</p>
+<ul>
+<li><code>[T; 3]</code> where <code>T: </code><a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html"><code>Term</code></a> implements <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/triple/trait.Triple.html"><code>Triple</code></a></li>
+<li><code>([T; 3], Option&lt;T&gt;)</code> where <code>T: </code><a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/trait.Term.html"><code>Term</code></a> implements <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/quad/trait.Quad.html"><code>Quad</code></a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="rdf-graphs"><a class="header" href="#rdf-graphs">RDF Graphs</a></h1>
+<p>The <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html"><code>Graph</code></a> and <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.MutableGraph.html"><code>MutableGraph</code></a> traits define how you interact with <a href="https://www.w3.org/TR/rdf12-concepts/#dfn-rdf-graph">RDF graphs</a> in Sophia.</p>
+<h2 id="using-graphs"><a class="header" href="#using-graphs">Using graphs</a></h2>
+<p>RDF graphs are sets of triples,
+so the most common thing you need to do with a graph is to iterate over its triples.
+This is achieved with the <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#tymethod.triples"><code>Graph::triples</code></a> method:</p>
+<pre><code class="language-rust noplayground"><span class="boring">use sophia::api::prelude::*;
+</span><span class="boring">use sophia::inmem::graph::LightGraph;
+</span><span class="boring">fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+</span><span class="boring">let g = LightGraph::new();
+</span>for result in g.triples() {
+	let triple = result?;
+	// do something with t;
+}
+<span class="boring">Ok(()) }</span></code></pre>
+<p>Notice that <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#tymethod.triples"><code>Graph::triples</code></a> yields <a href="https://doc.rust-lang.org/std/result/enum.Result.html"><code>Result</code></a>s,
+as some implementations of <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html"><code>Graph</code></a> may fail at any point of the iteration.</p>
+<p>When only a subset of the triples in the graph are of interest,
+you will want to use the <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#method.triples_matching"><code>Graph::triples_matching</code></a> method:</p>
+<pre><code class="language-rust noplayground"><span class="boring">use sophia::api::{ns::rdf, prelude::*, term::SimpleTerm};
+</span><span class="boring">use sophia::inmem::graph::LightGraph;
+</span>
+<span class="boring">let graph = LightGraph::new();
+</span>// Utility closure to recognize IRIs in the schema.org namespace
+let in_schema_org = |t: SimpleTerm| -&gt; bool {
+	t.iri()
+	 .map(|iri| iri.as_str().starts_with(("http://schema.org/")))
+	 .unwrap_or(false)
+};
+// Iter over all instances of schema.org types
+graph
+	.triples_matching(Any, [rdf::type_], in_schema_org)
+	.map(|res| { let [s, _, o] = res.unwrap().to_spo(); (s, o)})
+	.for_each(|(instance, typ)| {
+		// do something 
+	})</code></pre>
+<p><a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#method.triples_matching"><code>Graph::triples_matching</code></a> accepts a large variety of parameters,
+which will be described in more detail <a href="#term-matchers">in the next chapter</a>.</p>
+<p><a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html"><code>Graph</code></a> also provide methods to iterate over all <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#method.subjects">subjects</a>,
+<a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#method.predicates">predicate</a>
+and <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#method.objects">object</a>
+in the graph,
+as well as over all unique terms of a certain kind
+(<a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#method.iris"><code>Graph::iris</code></a>, <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#method.blank_nodes"><code>Graph::blank_nodes</code></a>, <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#method.literals"><code>Graph::literals</code></a>, etc.).</p>
+<p>Finally, it is possible to check whether a graph contains a specific triple with the method <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#method.contains"><code>Graph::contains</code></a>.</p>
+<h2 id="mutating-graphs"><a class="header" href="#mutating-graphs">Mutating graphs</a></h2>
+<p>Any implementation of <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html"><code>Graph</code></a> that can be mutated should also implement <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.MutableGraph.html"><code>MutableGraph</code></a>,
+which comes with additional methods for modifying the graph.
+Individual triples can be added to the graph (resp. removed from the graph)
+with <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.MutableGraph.html#tymethod.insert"><code>MutableGraph::insert</code></a> (resp. <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.MutableGraph.html#tymethod.remove"><code>MutableGraph::remove</code></a>).
+Inserting (resp. removing) a triple that is already (resp. not) present in the graph will be essentially a noop.</p>
+<pre><code class="language-rust noplayground"><span class="boring">use sophia::{api::{ns::rdf, prelude::*}, iri::*};
+</span>/// Example: increment the rdf:value of a given subject
+<span class="boring">fn f&lt;G: MutableGraph&gt;(mut g: G) -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+</span><span class="boring">let s = Iri::new_unchecked("https://example.org/foo");
+</span>let old_value: i32 = g.triples_matching([s], [rdf::value], Any)
+	.next()
+	.unwrap()?
+	.o()
+	.try_into_term()?;
+g.remove(s, rdf::value, old_value)?;
+g.insert(s, rdf::value, old_value + 1)?;
+<span class="boring">Ok(()) }</span></code></pre>
+<p>Batch modifications can also be performed on mutable graphs:</p>
+<ul>
+<li><a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.MutableGraph.html#method.insert_all"><code>MutableGraph::insert_all</code></a>
+inserts all the triples from a triple source<sup class="footnote-reference" id="fr-triple_source-1"><a href="#footnote-triple_source">1</a></sup>;</li>
+<li><a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.MutableGraph.html#method.remove_all"><code>MutableGraph::remove_all</code></a>
+removes all the triples from a triple source<sup class="footnote-reference" id="fr-triple_source-2"><a href="#footnote-triple_source">1</a></sup>;</li>
+<li><a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.MutableGraph.html#method.remove_matching"><code>MutableGraph::remove_matching</code></a>
+removes all the triples matching the parameters;</li>
+<li><a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.MutableGraph.html#method.retain_matching"><code>MutableGraph::retain_matching</code></a>
+removes all the triples <em>except</em> those matching the parameters.</li>
+</ul>
+<p>The parameters of <code>remove_matching</code> and <code>retain_matching</code> are similar to those of <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#method.triples_matching"><code>Graph::triples_matching</code></a>
+and are described in more detail in the <a href="#term-matchers">next chapter</a>.</p>
+<h2 id="useful-types-implementing-graph"><a class="header" href="#useful-types-implementing-graph">Useful types implementing <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html"><code>Graph</code></a></a></h2>
+<ul>
+<li>slices of <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/triple/trait.Triple.html">triples</a> implement <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html"><code>Graph</code></a>;</li>
+<li>standard collections (<a href="https://doc.rust-lang.org/std/vec/struct.Vec.html"><code>Vec</code></a>, <a href="https://doc.rust-lang.org/std/collections/struct.HashSet.html"><code>HashSet</code></a> and <a href="https://doc.rust-lang.org/std/collections/struct.BTreeSet.html"><code>BTreeSet</code></a>) of <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/triple/trait.Triple.html">triples</a> implement <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html"><code>Graph</code></a> and <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.MutableGraph.html"><code>MutableGraph</code></a>;</li>
+<li><a href="https://docs.rs/sophia_inmem/0.10.0/sophia_inmem/graph/type.LightGraph.html"><code>sophia::inmem::LightGraph</code></a> provides a <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html"><code>Graph</code></a> and <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.MutableGraph.html"><code>MutableGraph</code></a> implementation with a low memory footprint;</li>
+<li><a href="https://docs.rs/sophia_inmem/0.10.0/sophia_inmem/graph/type.FastGraph.html"><code>sophia::inmem::FastGraph</code></a> provides a <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html"><code>Graph</code></a> and <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.MutableGraph.html"><code>MutableGraph</code></a> implementation designed for fast retrieval of any given triple.</li>
+</ul>
+<h2 id="recipes-for-constructing-graphs"><a class="header" href="#recipes-for-constructing-graphs">Recipes for constructing graphs</a></h2>
+<h3 id="constructing-and-populating-an-empty-graph"><a class="header" href="#constructing-and-populating-an-empty-graph">Constructing and populating an empty graph</a></h3>
+<pre><code class="language-rust noplayground"><span class="boring">use sophia::{api::{ns::{Namespace, rdf}, prelude::*}, inmem::graph::FastGraph};
+</span><span class="boring">fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+</span>let mut g = FastGraph::new();
+let ex = Namespace::new_unchecked("https://example.org/ns#");
+let alice = ex.get_unchecked("alice");
+let s = Namespace::new_unchecked("http://schema.org/");
+g.insert(
+	&amp;alice,
+	rdf::type_,
+	s.get_unchecked("Person")
+)?;
+g.insert(
+	&amp;alice,
+	s.get_unchecked("name"),
+  "Alice"
+)?;
+<span class="boring">Ok(()) }</span></code></pre>
+<h3 id="constructing-a-graph-from-a-triple-source1"><a class="header" href="#constructing-a-graph-from-a-triple-source1">Constructing a graph from a triple source<sup class="footnote-reference" id="fr-triple_source-3"><a href="#footnote-triple_source">1</a></sup></a></h3>
+<pre><code class="language-rust noplayground"><span class="boring">use sophia::{api::prelude::*, inmem::graph::FastGraph, iri::Iri};
+</span><span class="boring">fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+</span><span class="boring">let big_graph = FastGraph::new();
+</span>// Extract all triples about 'alice' from big_graph in a new graph
+let alice = Iri::new_unchecked("https://example.org/ns#alice");
+let graph: FastGraph = big_graph
+	.triples_matching([alice], Any, Any)
+	.collect_triples()?;
+<span class="boring">Ok(()) }</span></code></pre>
+<p>NB: Only types implementing <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.CollectibleGraph.html"><code>CollectibleGraph</code></a>
+can actually be constructed with the <code>collected_triples</code> method as above.
+However, most types implementing <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html"><code>Graph</code></a> should implement <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.CollectibleGraph.html"><code>CollectibleGraph</code></a>.</p>
+<h3 id="constructing-a-graph-from-a-file"><a class="header" href="#constructing-a-graph-from-a-file">Constructing a graph from a file</a></h3>
+<pre><code class="language-rust noplayground"><span class="boring">use sophia::{api::prelude::*, inmem::graph::FastGraph, iri::Iri};
+</span><span class="boring">use std::{io::BufReader, fs::File};
+</span>use sophia::turtle::parser::turtle;
+
+<span class="boring">fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+</span>dbg!(std::env::current_dir());
+let f = BufReader::new(File::open("../sophia_doap.ttl")?);
+let graph: FastGraph = turtle::parse_bufread(f)
+	.collect_triples()?;
+<span class="boring">Ok(()) }</span></code></pre>
+<p>For more about parsing (and serializing), see <a href="#parsing-and-serializing">the corresponding chapter</a>.</p>
+<hr>
+<hr>
+<ol class="footnote-definition">
+<li id="footnote-triple_source">
+<p>a <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/source/trait.TripleSource.html"><code>TripleSource</code></a> is a fallible stream of triples,
+such as those returned by <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#tymethod.triples"><code>Graph::triples</code></a> or <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#method.triples_matching"><code>Graph::triples_matching</code></a>,
+or those returned by <a href="#parsing-and-serializing">parsers</a>.
+In particular, any iterator of <code>Result&lt;T, E&gt;</code> where <code>T: </code><a href="https://docs.rs/sophia_api/0.10.0/sophia_api/triple/trait.Triple.html"><code>Triple</code></a> is a <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/source/trait.TripleSource.html"><code>TripleSource</code></a>. <a href="#fr-triple_source-1">↩</a> <a href="#fr-triple_source-2">↩2</a> <a href="#fr-triple_source-3">↩3</a></p>
+</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="term-matchers"><a class="header" href="#term-matchers">Term matchers</a></h1>
+<p>A number of functions in <code>sophia</code> accept parameters to select certain terms;
+the most prominent example is <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/graph/trait.Graph.html#method.triples_matching"><code>Graph::triples_matching</code></a>,
+which we encountered in the <a href="#rdf-graphs">previous chapter</a>.
+This capacity to select, or “match”, certain terms,
+is captured by the trait <a href="https://docs.rs/sophia_api/0.10.0/sophia_api/term/matcher/trait.TermMatcher.html"><code>TermMatcher</code></a>.
+A number of types implement those traits.</p>
+<p>(more coming soon)</p>
+<!--
+TODO Section [`TermMatcher`]s illustrated
+a first example uses arrays on one term and Any, and details the two
+a second example uses arrays of several terms, then a slice (using a Vec whose size is not known in advance)
+a fourth example uses a termkind
+a fifth example uses a termkind
+-->
+<!--
+TODO Section Other uses of [`TermMatcher`]s
+Provide a few examples of other methods using term matchers.
+-->
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="rdf-datasets"><a class="header" href="#rdf-datasets">RDF Datasets</a></h1>
+<p>(coming soon)</p>
+<!--
+TODO explain briefly how the Dataset and MutableDataset traits are similar to Graph and MutableGraph,
+replacing Triple's with Quad's and TripleSource's with QuadSource's.
+Provide some examples similar
+-->
+<!--
+TODO add a section on how to access and manipulate individual named graphs, union graphs.
+-->
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="parsing-and-serializing"><a class="header" href="#parsing-and-serializing">Parsing and Serializing</a></h1>
+<p>(coming soon)</p>
+<!--
+TODO describe the different parsers and serializers available in Sophia (mentioning the feature gates)
+Start with Turtle, then N-Triples, then TriG, then N-Quads, then RDF/XML, then JSON-LD.
+For Turtle, give several examples or parsing (from string, from Read) and serializing (to Write, stringify),
+and note that the same patterns exist for all parsers/serializers.
+Then more briefly give examples for the other syntaxes.
+-->
+<!--
+TODO then add section on using builder or options to customize behaviour,
+like adding a base to a parser or requiring to preserve bnode labels
+(with a note on why this is not the default);
+or setting serialization to pretty or canonical.
+(note that those options depend on the syntax, because they do not always make sense)
+-->
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="querying"><a class="header" href="#querying">Querying</a></h1>
+<blockquote class="blockquote-tag blockquote-tag-note">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p>
+<p>The features described in this chapter by the feature <code>sparql</code> in the <code>sophia</code> crate.</p>
+</blockquote>
+<p>(coming soon)</p>
+<!--
+TODO talk about the SparqlDataset trait, then the SparqlWrapper that make any Dataset "sparqlable".
+Provide some examples of using it, showing how to use the result of different kinds (select, ask, construct).
+
+TODO finish with a note explaining that the genericity of SparqlWrapper means that performances may or may not be there.
+Suggest that FastDataset is a good fit.
+-->
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="reasoning"><a class="header" href="#reasoning">Reasoning</a></h1>
+<blockquote class="blockquote-tag blockquote-tag-note">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p>
+<p>The features described in this chapter by the feature <code>reasoner</code> in the <code>sophia</code> crate.</p>
+</blockquote>
+<!--
+TODO explain that this feature is related to the entailment regimes described in RDF 1.2 Semantics,
+and provide examples for computing entailment in different regimes.
+
+TODO also show how to detect (and catch) an inconsistent graph.
+-->
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="changes-since-version-07"><a class="header" href="#changes-since-version-07">Changes since version 0.7</a></h1>
+<p>Sophia has been heavily refactored between version 0.7 and 0.8. This refactoring was triggered by the use of <a href="https://blog.rust-lang.org/2022/10/28/gats-stabilization.html">Generic Ascciated Types</a> (GATs), that have finally landed in stable Rust. But this was also an opportunity to make a number of other changes.</p>
+<h2 id="the-benefit-of-gats"><a class="header" href="#the-benefit-of-gats">The benefit of GATs</a></h2>
+<p>The main benefit of GATs is to get rid of <a href="https://docs.rs/sophia/0.7.2/sophia/triple/streaming_mode/index.html">odd patterns</a> that were introduced in Sophia in order to keep it generic enough to support multiple implementation choices. The drawback of this approach was that implementing Sophia’s traits (especially <code>Graph</code> and <code>Dataset</code>) could be cumbersome.</p>
+<p>As an example, the <a href="https://docs.rs/sophia/0.7.2/sophia/graph/trait.Graph.html"><code>Graph</code></a> trait used to be</p>
+<pre><code class="language-rust noplayground ignore">pub trait Graph {
+    type Triple: TripleStreamingMode;
+    // ...
+}</code></pre>
+<p>Given a type <code>MyGraph</code> implementing that trait, the actual type of triples yielded by <a href="https://docs.rs/sophia/0.7.2/sophia/graph/trait.Graph.html#tymethod.triples"><code>MyGraph::triples</code></a> could not be immediately determined, and was quite intricate. This could be inconvenient for some users of <code>MyGraph</code>, and was usually cumbersome for the implementer.</p>
+<p>Compare to the new definition of the <code>Graph</code> trait:</p>
+<pre><code class="language-rust noplayground ignore">pub trait Graph {
+    type Triple&lt;'x&gt;: Triple where Self: 'x;
+    // ...
+}</code></pre>
+<p>where <code>Graph::triples</code> now yield triples whose type is exactly <code>Graph::Triple&lt;'_&gt;</code>. Much easier.</p>
+<p>The same pattern existed for <a href="https://docs.rs/sophia/0.7.2/sophia/dataset/trait.Dataset.html"><code>Dataset</code></a>,
+<a href="https://docs.rs/sophia/0.7.2/sophia/triple/stream/trait.TripleSource.html"><code>TripleSource</code></a>, and
+<a href="https://docs.rs/sophia/0.7.2/sophia/quad/stream/trait.QuadSource.html"><code>QuadSource</code></a>,
+where GATs have now also replaced it.</p>
+<h2 id="the-new-term-trait"><a class="header" href="#the-new-term-trait">The new <code>Term</code> trait</a></h2>
+<p>The old <a href="https://docs.rs/sophia/0.7.2/sophia/term/trait.TTerm.html"><code>TTerm</code></a>
+trait has been replaced by a new <a href="https://github.com/pchampin/sophia_rs/blob/a925e6177cfdd7e90dafd4b917ae0790c40a0165/api/src/term.rs#L87"><code>Term</code></a>
+trait, with a significantly different API, that serves several purposes:</p>
+<ul>
+<li>it now supports <a href="https://www.w3.org/2021/12/rdf-star.html">RDF-star</a></li>
+<li>it now allows atomic types (such as <code>&amp;str</code> or <code>i32</code>) to be used directly as terms
+(they are interpreted as <code>xsd:string</code> and <code>xsd:integer</code> literals, respectively).</li>
+</ul>
+<p>Any code that handles terms will need some significant rewriting.
+See the chapter on <a href="#rdf-terms">RDF terms</a> for more detail.</p>
+<h3 id="the-end-of-the-iri-zoo"><a class="header" href="#the-end-of-the-iri-zoo">The end of the “IRI zoo”</a></h3>
+<p>Historically, a number of different types have been created in Sophia for representing IRIs,
+which was <a href="https://github.com/pchampin/sophia_rs/discussions/112">causing some confusion</a>.
+Most of them have now disappeared, in favor of the types defined in <a href="https://docs.rs/sophia_iri/0.8.0/sophia_iri/"><code>sophia_iri</code></a>.</p>
+<h3 id="reducing-the-sophia_term-crate"><a class="header" href="#reducing-the-sophia_term-crate">Reducing the <a href="https://docs.rs/sophia_term/0.8.0/sophia_term/"><code>sophia_term</code></a> crate</a></h3>
+<p>The <a href="https://docs.rs/sophia_term/0.8.0/sophia_term/"><code>sophia_term</code></a> crate,
+from which most term implementations came in 0.7, has been significantly reduced.
+The most general types that it provided (<a href="https://docs.rs/sophia_term/0.7.2/sophia_term/type.BoxTerm.html"><code>BoxTerm</code></a>, <a href="https://docs.rs/sophia_term/0.7.2/sophia_term/type.RefTerm.html"><code>RefTerm</code></a>)
+are now subsumed by <a href="https://docs.rs/sophia_api/0.8.0/sophia_api/term/enum.SimpleTerm.html"><code>SimpleTerm</code></a>,
+a straightforward implementation of the <code>Term</code> trait, provided by
+<a href="https://docs.rs/sophia_api/0.8.0/sophia_api/index.html"><code>sophia_api</code></a>.
+More specific types (such as
+<a href="https://docs.rs/sophia_term/0.8.0/sophia_term/type.RcTerm.html"><code>RcTerm</code></a> or
+<a href="https://docs.rs/sophia_term/0.8.0/sophia_term/type.ArcTerm.html"><code>ArcTerm</code></a>)
+are still provided by <code>sophia_term</code>.</p>
+<h2 id="simplification-of-the-graph-and-dataset-traits"><a class="header" href="#simplification-of-the-graph-and-dataset-traits">Simplification of the <code>Graph</code> and <code>Dataset</code> traits</a></h2>
+<p>In version 0.7, the <code>Graph</code> trait had a number of specialized methods for retrieving selected triples,
+such as <a href="https://docs.rs/sophia_api/0.7.2/sophia_api/graph/trait.Graph.html#method.triples_with_s"><code>triples_with_s</code></a>
+or <a href="https://docs.rs/sophia_api/0.7.2/sophia_api/graph/trait.Graph.html#method.triples_with_po"><code>triples_with_po</code></a>
+(and similarly for <code>Dataset</code>: <code>quads_with_s</code>, etc.).</p>
+<p>All these methods have disappeared in favor of <a href="https://docs.rs/sophia_api/0.8.0/sophia_api/graph/trait.Graph.html#method.triples_matching"><code>triples_matching</code></a>,
+so that instead of:</p>
+<pre><code class="language-rust noplayground ignore">for t in g.triples_with_s(mys) {
+    // ...
+}</code></pre>
+<p>one should now write</p>
+<pre><code class="language-rust noplayground"><span class="boring">extern crate sophia;
+</span><span class="boring">use sophia::api::prelude::*;
+</span><span class="boring">let g: Vec&lt;[i32; 3]&gt; = vec![]; // dummy graph type
+</span><span class="boring">let mys = 42;
+</span>for t in g.triples_matching([mys], Any, Any) {
+    // ...
+}</code></pre>
+<p>and the performances will be the same
+(depending, of course, of how carefully the <code>Graph</code>/<code>Dataset</code> was implemented,
+but that was already the case with the previous API).</p>
+<h2 id="the-sophia-crate"><a class="header" href="#the-sophia-crate">The <code>sophia</code> crate</a></h2>
+<p>As before, Sophia is still made of several specialized crates
+(<code>sophia_api</code>, <code>sophia_iri</code>, <code>sophia_turtle</code>…)
+that are all packaged in a one-stop-shop crate named <code>sophia</code>.
+Note however that the structure of that crate as changed significantly.
+In version 0.7, it re-exported symbols from the smaller crates in its <em>own</em> module hierarchy, mostly for historical reason.
+In version 0.8, it simply exposes the smaller crates into a corresponding module,
+e.g. <code>sophia::api</code> re-exports the root module of <code>sophia_api</code>, and so on.</p>
+<h2 id="requesting-help"><a class="header" href="#requesting-help">Requesting help</a></h2>
+<p>As migration from version 0.7 to version 0.8 can be challenging,
+a <a href="https://github.com/pchampin/sophia_rs/labels/v0.8_migration">dedicated tag</a>
+has been added on the github repository of Sophia to mark migration issues and request assistance.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="changes-between-version-09-and-010"><a class="header" href="#changes-between-version-09-and-010">Changes between version 0.9 and 0.10</a></h1>
+<p>Sophia has been slightly refactored between version 0.9 and 0.10.</p>
+<h2 id="ntserializer-is-now-ntriplesserializer"><a class="header" href="#ntserializer-is-now-ntriplesserializer">NTSerializer is now NTriplesSerializer</a></h2>
+<p>Rename sophia::turtle::serializer::nt::NTSerializer to NTriplesSerializer.</p>
+<h2 id="impl-term-add-base_direction"><a class="header" href="#impl-term-add-base_direction">impl Term: add base_direction</a></h2>
+<p><code>Term::base_direction()</code> does provide a default implementation – but that base implementation needs to be overridden if your implementation supports literals (it will panic when called on a literal – like all other default implementations of <code>Term</code> methods).
+If you do not support base direction at all, which would be the case for RDF 1.1 implementations, then the following workaround fixes runtime errors with literals in existing Sophia 0.9 code:</p>
+<pre><code class="language-rs">fn base_direction(&amp;self) -&gt; Option&lt;BaseDirection&gt; {
+    None
+}
+</code></pre>
+<h2 id="impl-graph-change-triples_matching"><a class="header" href="#impl-graph-change-triples_matching">impl Graph: change triples_matching</a></h2>
+<p>The trait signature of <code>Graph::triples_matching()</code> it more permissive than before, so your existing method bodies should still compile.
+All you need to do is to change the signature to match that of the trait:</p>
+<pre><code class="language-rs">impl Graph for MyGraph {
+-    fn triples_matching&lt;'s, S, P, O&gt;(
++    fn triples_matching&lt;'s, 't, S, P, O&gt;(
+         &amp;'s self, sm: S, pm: P, om: O,
+-    ) -&gt; impl Iterator&lt;Item = Result&lt;Self::Triple&lt;'s&gt;, Self::Error&gt;&gt; + 's
++    ) -&gt; impl Iterator&lt;Item = Result&lt;Self::Triple&lt;'s&gt;, Self::Error&gt;&gt; + 't
+     where
+-        S: TermMatcher + 's,
+-        P: TermMatcher + 's,
+-        O: TermMatcher + 's,
++        's: 't,
++        S: TermMatcher + 't,
++        P: TermMatcher + 't,
++        O: TermMatcher + 't,
+     {
+</code></pre>
+<h2 id="turtle-parser-now-has-a-constructor-and-needs-a-baseiriref-instead-of-an-iri"><a class="header" href="#turtle-parser-now-has-a-constructor-and-needs-a-baseiriref-instead-of-an-iri">Turtle parser now has a constructor and needs a BaseIriRef instead of an Iri</a></h2>
+<p>If you are creating a TurtleParser with base using Sophia 0.9 as follows…</p>
+<pre><code class="language-rs">let ttl_parser = sophia::turtle::parser::turtle::TurtleParser {
+    base: Some(sophia::iri::Iri::new_unchecked("https://test.com/".to_owned())),
+};
+</code></pre>
+<p>… in Sophia 0.10 you need to provide a <code>BaseIriRef&lt;Box&lt;str&gt;&gt;</code> instead but you can use the new constructor and <code>with_base</code> method:</p>
+<pre><code class="language-rs">let ttl_parser = sophia::turtle::parser::turtle::TurtleParser::new().with_base(
+    Some(sophia::iri::IriRef::&lt;Box&lt;str&gt;&gt;::new_unchecked("https://test.com/".into()).to_base()));
+</code></pre>
+<h2 id="literallanguage-tuple-size-increased-to-3"><a class="header" href="#literallanguage-tuple-size-increased-to-3">LiteralLanguage Tuple size increased to 3</a></h2>
+<p>If you don’t care about the base direction and are matching on LiteralLanguage, ignore the 3rd element with <code>_</code> or <code>..</code>.
+For example, you could change <code>SimpleTerm::LiteralLanguage(a, b)</code> to <code>SimpleTerm::LiteralLanguage(a, ,b, _)</code>.</p>
+<h2 id="s-in-gtriples_matchings--may-now-be-an-indexedterm"><a class="header" href="#s-in-gtriples_matchings--may-now-be-an-indexedterm"><code>&amp;s</code> in <code>g.triples_matching([&amp;s], ...)</code> may now be an <code>&amp;IndexedTerm</code></a></h2>
+<p>If <code>s</code> is the result of <a href="https://docs.rs/sophia_inmem/0.10.0/sophia_inmem/index/trait.TermIndex.html#tymethod.get_term"><code>BasicTermIndex::get_term</code></a>, then <code>&amp;s</code> in <code>g.triples_matching([&amp;s], ...)</code> does not have the same type in 0.9.0 (<code>&amp;SimpleTerm</code>) and 0.10.0 (<code>&amp;IndexedTerm</code>).
+While the former implements the trait <code>Term</code>, the latter does not!
+Thus, <code>[&amp;s]</code> is not recognized as a <code>TermMatcher</code> anymore (it needs an array of <code>Term</code>s).
+The solution is to replace <code>&amp;s</code> with <code>s</code>: <code>g.triples_matching([s], ...)</code>.
+This is ok because, unlike <code>SimpleTerm</code>, <code>IndexedTerm</code> implements the trait <code>Copy</code>, so even if you need to use <code>s</code> later, this will not hurt.</p>
+<h2 id="requesting-help-1"><a class="header" href="#requesting-help-1">Requesting help</a></h2>
+<p>As migration from version 0.9 to version 0.10 can be challenging,
+a <a href="https://github.com/pchampin/sophia_rs/labels/v0.10_migration">dedicated tag</a>
+has been added on the github repository of Sophia to mark migration issues and request assistance.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+
+
                         <div style="clear: both"></div>
                     </nav>
                 </div>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
             </nav>
 
         </div>
 
-        <script type="text/javascript">
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
             window.playground_copyable = true;
         </script>
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
 
         <!-- Custom JS scripts -->
-        <script type="text/javascript">
+
+        <script>
         window.addEventListener('load', function() {
             window.setTimeout(window.print, 100);
         });
         </script>
+
+
+    </div>
     </body>
 </html>

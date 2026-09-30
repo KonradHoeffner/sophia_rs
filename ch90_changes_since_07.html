@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Executive summary - Sophia</title>
+        <title>Changes since version 0.7 - Sophia</title>
 
 
         <!-- Custom HTML head -->
@@ -177,105 +177,95 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <!-- this file is only meant to "import" the README.md into the book -->
-<h1 id="sophia"><a class="header" href="#sophia">Sophia</a></h1>
-<p>A Rust toolkit for RDF and Linked Data.</p>
-<p><a href="https://github.com/pchampin/sophia_rs/actions"><img src="https://github.com/pchampin/sophia_rs/actions/workflows/lint_and_test.yml/badge.svg" alt="Actions Status"></a>
-<a href="https://crates.io/crates/sophia"><img src="https://img.shields.io/crates/v/sophia.svg" alt="Latest Version"></a>
-<a href="https://docs.rs/sophia/"><img src="https://docs.rs/sophia/badge.svg" alt="Documentation"></a></p>
-<p>It comprises the following crates:</p>
+                        <h1 id="changes-since-version-07"><a class="header" href="#changes-since-version-07">Changes since version 0.7</a></h1>
+<p>Sophia has been heavily refactored between version 0.7 and 0.8. This refactoring was triggered by the use of <a href="https://blog.rust-lang.org/2022/10/28/gats-stabilization.html">Generic Ascciated Types</a> (GATs), that have finally landed in stable Rust. But this was also an opportunity to make a number of other changes.</p>
+<h2 id="the-benefit-of-gats"><a class="header" href="#the-benefit-of-gats">The benefit of GATs</a></h2>
+<p>The main benefit of GATs is to get rid of <a href="https://docs.rs/sophia/0.7.2/sophia/triple/streaming_mode/index.html">odd patterns</a> that were introduced in Sophia in order to keep it generic enough to support multiple implementation choices. The drawback of this approach was that implementing Sophia’s traits (especially <code>Graph</code> and <code>Dataset</code>) could be cumbersome.</p>
+<p>As an example, the <a href="https://docs.rs/sophia/0.7.2/sophia/graph/trait.Graph.html"><code>Graph</code></a> trait used to be</p>
+<pre><code class="language-rust noplayground ignore">pub trait Graph {
+    type Triple: TripleStreamingMode;
+    // ...
+}</code></pre>
+<p>Given a type <code>MyGraph</code> implementing that trait, the actual type of triples yielded by <a href="https://docs.rs/sophia/0.7.2/sophia/graph/trait.Graph.html#tymethod.triples"><code>MyGraph::triples</code></a> could not be immediately determined, and was quite intricate. This could be inconvenient for some users of <code>MyGraph</code>, and was usually cumbersome for the implementer.</p>
+<p>Compare to the new definition of the <code>Graph</code> trait:</p>
+<pre><code class="language-rust noplayground ignore">pub trait Graph {
+    type Triple&lt;'x&gt;: Triple where Self: 'x;
+    // ...
+}</code></pre>
+<p>where <code>Graph::triples</code> now yield triples whose type is exactly <code>Graph::Triple&lt;'_&gt;</code>. Much easier.</p>
+<p>The same pattern existed for <a href="https://docs.rs/sophia/0.7.2/sophia/dataset/trait.Dataset.html"><code>Dataset</code></a>,
+<a href="https://docs.rs/sophia/0.7.2/sophia/triple/stream/trait.TripleSource.html"><code>TripleSource</code></a>, and
+<a href="https://docs.rs/sophia/0.7.2/sophia/quad/stream/trait.QuadSource.html"><code>QuadSource</code></a>,
+where GATs have now also replaced it.</p>
+<h2 id="the-new-term-trait"><a class="header" href="#the-new-term-trait">The new <code>Term</code> trait</a></h2>
+<p>The old <a href="https://docs.rs/sophia/0.7.2/sophia/term/trait.TTerm.html"><code>TTerm</code></a>
+trait has been replaced by a new <a href="https://github.com/pchampin/sophia_rs/blob/a925e6177cfdd7e90dafd4b917ae0790c40a0165/api/src/term.rs#L87"><code>Term</code></a>
+trait, with a significantly different API, that serves several purposes:</p>
 <ul>
-<li>Core crates:
-<ul>
-<li><a href="https://crates.io/crates/sophia_api"><code>sophia_api</code></a> defines a generic API for RDF 1.2 and linked data,
-as a set of core traits and types;
-more precisely, it provides traits for describing
-<ul>
-<li>terms, triples and quads,</li>
-<li>graphs and datasets,</li>
-<li>parsers and serializers</li>
+<li>it now supports <a href="https://www.w3.org/2021/12/rdf-star.html">RDF-star</a></li>
+<li>it now allows atomic types (such as <code>&amp;str</code> or <code>i32</code>) to be used directly as terms
+(they are interpreted as <code>xsd:string</code> and <code>xsd:integer</code> literals, respectively).</li>
 </ul>
-</li>
-<li><a href="https://crates.io/crates/sophia_bcp47"><code>sophia_bcp47</code></a> provides functions and types for validating <a href="https://tools.ietf.org/search/bcp47">BCP47</a> language tags.</li>
-<li><a href="https://crates.io/crates/sophia_iri"><code>sophia_iri</code></a> provides functions, types and traits for validating and resolving IRIs.</li>
-<li><a href="https://crates.io/crates/sophia_inmem"><code>sophia_term</code></a> defines various implementations of the <code>Term</code> trait from <code>sophia_api</code>.</li>
-<li><a href="https://crates.io/crates/sophia_inmem"><code>sophia_inmem</code></a> defines in-memory implementations of the <code>Graph</code> and <code>Dataset</code> traits from <code>sophia_api</code>.</li>
-</ul>
-</li>
-<li>Parsers and serializers
-<ul>
-<li><a href="https://crates.io/crates/sophia_turtle"><code>sophia_turtle</code></a> provides parsers and serializers for the Turtle-family of concrete syntaxes (for RDF 1.2).</li>
-<li><a href="https://crates.io/crates/sophia_jsonld"><code>sophia_jsonld</code></a> provides parsers and serializers for JSON-LD 1.1.</li>
-<li><a href="https://crates.io/crates/sophia_xml"><code>sophia_xml</code></a> provides parsers and serializers for RDF/XML 1.2.</li>
-</ul>
-</li>
-<li>Other
-<ul>
-<li><a href="https://crates.io/crates/sophia_c14n"><code>sophia_c14n</code></a> implements <a href="https://www.w3.org/TR/rdf-canon/">RDF canonicalization</a>.</li>
-<li><a href="https://crates.io/crates/sophia_isomorphism"><code>sophia_isomorphism</code></a> provides functions to determine if two graphs or datasets are <a href="https://www.w3.org/TR/rdf12-concepts/#dfn-graph-isomorphism">isomorphic</a>.</li>
-<li><a href="https://crates.io/crates/sophia_sparql"><code>sophia_sparql</code></a> provides a (currently partial) implementation of the <a href="https://www.w3.org/TR/sparql12-query/">SPARQL 1.2 Query Language</a>.</li>
-<li><a href="https://crates.io/crates/sophia_sparql_client"><code>sophia_sparql_client</code></a> provides a client for the <a href="https://www.w3.org/TR/sparql11-protocol/">SPARQL 1.1 Protocol</a>.</li>
-<li>[<code>sophia_reasoner</code>] provides reasoning over Simple, RDF and RDF-Schema entailment regimes</li>
-<li><a href="https://crates.io/crates/sophia_resource"><code>sophia_resource</code></a> provides a resource-centric API.</li>
-</ul>
-</li>
-<li>All-inclusive
-<ul>
-<li><a href="https://crates.io/crates/sophia"><code>sophia</code></a> re-exports symbols from all the crates above, with the following provisio:
-<ul>
-<li><code>sophia_jsonld</code> is only available with the <code>jsonld</code> feature</li>
-<li><code>sophia_sparql</code> is only available with the <code>sparql</code> feature</li>
-<li><code>sophia_sparql_client</code> is only available with the <code>http_client</code> feature</li>
-<li><code>sophia_xml</code> is only available with the <code>xml</code> feature</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>In addition to the <a href="https://docs.rs/sophia/">API documentation</a>,
-a high-level <a href="https://pchampin.github.io/sophia_rs/">user documentation</a> is available (although not quite complete yet).</p>
-<h2 id="licence"><a class="header" href="#licence">Licence</a></h2>
-<p>This project is licensed under either or</p>
-<ul>
-<li><a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></li>
-<li><a href="https://cecill.info/licences/Licence_CeCILL-B_V1-en.html">CECILL-B License</a>, compatible with BSD</li>
-</ul>
-<p>at your option.</p>
-<h2 id="citation"><a class="header" href="#citation">Citation</a></h2>
-<p>When using Sophia, please use the following citation:</p>
-<blockquote>
-<p>Champin, P.-A. (2020) ‘Sophia: A Linked Data and Semantic Web toolkit for Rust’, in Wilde, E. and Amundsen, M. (eds). The Web Conference 2020: Developers Track, Taipei, TW. Available at: https://www2020devtrack.github.io/site/schedule.</p>
-</blockquote>
-<p>Bibtex:</p>
-<pre><code class="language-bibtex">@misc{champin_sophia_2020,
-        title = {{Sophia: A Linked Data and Semantic Web toolkit for Rust},
-        author = {Champin, Pierre-Antoine},
-        howpublished = {{The Web Conference 2020: Developers Track}},
-        address = {Taipei, TW},
-        editor = {Wilde, Erik and Amundsen, Mike},
-        month = apr,
-        year = {2020},
-        language = {en},
-        url = {https://www2020devtrack.github.io/site/schedule}
-}
-</code></pre>
-<h2 id="third-party-crates"><a class="header" href="#third-party-crates">Third-party crates</a></h2>
-<p>The following third-party crates are using or extending Sophia</p>
-<ul>
-<li><a href="https://crates.io/crates/hdt"><code>hdt</code></a> provides an implementation of Sophia’s traits based on the <a href="https://www.rdfhdt.org/">HDT</a> format.</li>
-<li><a href="https://crates.io/crates/manas"><code>manas</code></a> is a modular framework for implementing <a href="https://solidproject.org/">Solid</a> compatible servers</li>
-<li><a href="https://crates.io/crates/nanopub"><code>nanopub</code></a> is a toolkit for managing <a href="https://nanopub.net/">nanopublications</a></li>
-</ul>
-<h2 id="history"><a class="header" href="#history">History</a></h2>
-<p>An outdated comparison of Sophia with other RDF libraries is still available
-<a href="https://github.com/pchampin/sophia_benchmark/blob/master/benchmark_results.ipynb">here</a>.</p>
+<p>Any code that handles terms will need some significant rewriting.
+See the chapter on <a href="ch02_rdf_terms.html">RDF terms</a> for more detail.</p>
+<h3 id="the-end-of-the-iri-zoo"><a class="header" href="#the-end-of-the-iri-zoo">The end of the “IRI zoo”</a></h3>
+<p>Historically, a number of different types have been created in Sophia for representing IRIs,
+which was <a href="https://github.com/pchampin/sophia_rs/discussions/112">causing some confusion</a>.
+Most of them have now disappeared, in favor of the types defined in <a href="https://docs.rs/sophia_iri/0.8.0/sophia_iri/"><code>sophia_iri</code></a>.</p>
+<h3 id="reducing-the-sophia_term-crate"><a class="header" href="#reducing-the-sophia_term-crate">Reducing the <a href="https://docs.rs/sophia_term/0.8.0/sophia_term/"><code>sophia_term</code></a> crate</a></h3>
+<p>The <a href="https://docs.rs/sophia_term/0.8.0/sophia_term/"><code>sophia_term</code></a> crate,
+from which most term implementations came in 0.7, has been significantly reduced.
+The most general types that it provided (<a href="https://docs.rs/sophia_term/0.7.2/sophia_term/type.BoxTerm.html"><code>BoxTerm</code></a>, <a href="https://docs.rs/sophia_term/0.7.2/sophia_term/type.RefTerm.html"><code>RefTerm</code></a>)
+are now subsumed by <a href="https://docs.rs/sophia_api/0.8.0/sophia_api/term/enum.SimpleTerm.html"><code>SimpleTerm</code></a>,
+a straightforward implementation of the <code>Term</code> trait, provided by
+<a href="https://docs.rs/sophia_api/0.8.0/sophia_api/index.html"><code>sophia_api</code></a>.
+More specific types (such as
+<a href="https://docs.rs/sophia_term/0.8.0/sophia_term/type.RcTerm.html"><code>RcTerm</code></a> or
+<a href="https://docs.rs/sophia_term/0.8.0/sophia_term/type.ArcTerm.html"><code>ArcTerm</code></a>)
+are still provided by <code>sophia_term</code>.</p>
+<h2 id="simplification-of-the-graph-and-dataset-traits"><a class="header" href="#simplification-of-the-graph-and-dataset-traits">Simplification of the <code>Graph</code> and <code>Dataset</code> traits</a></h2>
+<p>In version 0.7, the <code>Graph</code> trait had a number of specialized methods for retrieving selected triples,
+such as <a href="https://docs.rs/sophia_api/0.7.2/sophia_api/graph/trait.Graph.html#method.triples_with_s"><code>triples_with_s</code></a>
+or <a href="https://docs.rs/sophia_api/0.7.2/sophia_api/graph/trait.Graph.html#method.triples_with_po"><code>triples_with_po</code></a>
+(and similarly for <code>Dataset</code>: <code>quads_with_s</code>, etc.).</p>
+<p>All these methods have disappeared in favor of <a href="https://docs.rs/sophia_api/0.8.0/sophia_api/graph/trait.Graph.html#method.triples_matching"><code>triples_matching</code></a>,
+so that instead of:</p>
+<pre><code class="language-rust noplayground ignore">for t in g.triples_with_s(mys) {
+    // ...
+}</code></pre>
+<p>one should now write</p>
+<pre><code class="language-rust noplayground"><span class="boring">extern crate sophia;
+</span><span class="boring">use sophia::api::prelude::*;
+</span><span class="boring">let g: Vec&lt;[i32; 3]&gt; = vec![]; // dummy graph type
+</span><span class="boring">let mys = 42;
+</span>for t in g.triples_matching([mys], Any, Any) {
+    // ...
+}</code></pre>
+<p>and the performances will be the same
+(depending, of course, of how carefully the <code>Graph</code>/<code>Dataset</code> was implemented,
+but that was already the case with the previous API).</p>
+<h2 id="the-sophia-crate"><a class="header" href="#the-sophia-crate">The <code>sophia</code> crate</a></h2>
+<p>As before, Sophia is still made of several specialized crates
+(<code>sophia_api</code>, <code>sophia_iri</code>, <code>sophia_turtle</code>…)
+that are all packaged in a one-stop-shop crate named <code>sophia</code>.
+Note however that the structure of that crate as changed significantly.
+In version 0.7, it re-exported symbols from the smaller crates in its <em>own</em> module hierarchy, mostly for historical reason.
+In version 0.8, it simply exposes the smaller crates into a corresponding module,
+e.g. <code>sophia::api</code> re-exports the root module of <code>sophia_api</code>, and so on.</p>
+<h2 id="requesting-help"><a class="header" href="#requesting-help">Requesting help</a></h2>
+<p>As migration from version 0.7 to version 0.8 can be challenging,
+a <a href="https://github.com/pchampin/sophia_rs/labels/v0.8_migration">dedicated tag</a>
+has been added on the github repository of Sophia to mark migration issues and request assistance.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="ch09_reasoning.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
 
-                            <a rel="next prefetch" href="ch00_introduction.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="ch99_changes_since_09.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -285,8 +275,11 @@ a high-level <a href="https://pchampin.github.io/sophia_rs/">user documentation<
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="ch09_reasoning.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
 
-                    <a rel="next prefetch" href="ch00_introduction.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="ch99_changes_since_09.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
